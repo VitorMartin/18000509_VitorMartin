@@ -3,4 +3,10 @@ public class Conta{
     public int numero;
     public String titular, cpf;
     public double saldo;
+
+    //Metodos da classe
+    void sacar(){}
+    void depositar(){}
+    void visualizarSaldo(){}
+    void transferirSaldo(){}
 }
