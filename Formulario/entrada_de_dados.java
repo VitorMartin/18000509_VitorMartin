@@ -6,15 +6,16 @@ public class EntradaDeDados {
 		// TODO Auto-generated method stub
 		Scanner scanner = new Scanner(System.in);
 		String nome;
+		
+		// Input String
 		System.out.println("Informe seu nome:");
 		nome = scanner.nextLine();
-		System.out.println("Ola " + nome);
+
+		// Input int
 		int n1, n2;
 		System.out.println("Informe dois numeros:");
 		n1 = scanner.nextInt();
 		n2 = scanner.nextInt();
-		System.out.println("Soma:" + (n1+n2));
-
 	}
 
 }
