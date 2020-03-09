@@ -1,0 +1,13 @@
+CELULAR
+Caracteristicas:
+    -marca
+    -tamanho
+    -cor
+    -tela
+    -so
+    -camera
+Funcoes:
+    -ligacao()
+    -tirarFoto()
+    -mandarMsgm()
+    ~~SurfarNaWeb()~~

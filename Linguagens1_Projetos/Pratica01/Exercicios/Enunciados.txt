@@ -1,0 +1,13 @@
+1. Elabore um programa que pede para o usuário informar R A nome completo, telefone, email e idade Apresente essas informações no formato chave valor.
+
+2. Elabore um programa que leia dois nomes e duas idades, exiba a diferença entre essas idades na tela.
+
+3. Construa um programa que pede para o usuário informar usuário e senha. Depois seu programa deve continuar sendo executado até que o usuário informe usuário e senha corretamente.
+
+4. Ler uma frase e verificar se ela é ou não um palíndromo.
+
+5. Elabore um programa que determine o enésimo valor da sequência de Fibonnacci.
+
+6. Elabore um programa que permita o usuário informar o valor inicial e final de uma sequência, apresente a somatória e o produto entre todos os valores do intervalo.
+
+7. O usuário informa um valor e você apresenta a soma de todos os algarismos dele.
