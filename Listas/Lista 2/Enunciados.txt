@@ -1,0 +1,11 @@
+1. Modelar e implementar uma classe que represente as possibilidades de jogo de “Pedra Papel Tesoura”. Em caso de dúvidas, consultar (https://pt.wikipedia.org/wiki/Pedra,_papel_e_tesoura).
+
+2. Modelar e implementar uma classe que represente um jogador com seu nome e jogada de pedra papel tesoura.
+
+3. Modelar e implementar uma classe Jogo, que permite que 2 jogadores possam disputar o jogo de pedra papel tesoura.
+
+4. Modele e implemente uma classe que represente as jogadas de “Rock, Paper, Scissor, Lizard and Spock". (https://bigbangtheory.fandom.com/wiki/Rock,_Paper,_Scissors,_Lizard,_Spock).
+
+5. Modele e implemente uma classe jogo para o item 4.
+
+6. Crie uma classe principal que permite que o jogador escolha qual jogo ele deseja jogar.
