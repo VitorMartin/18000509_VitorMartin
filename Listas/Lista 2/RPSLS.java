@@ -43,11 +43,11 @@ public class RPSLS{
                 (p1.jogada).equalsIgnoreCase("lizard")  && (p2.jogada).equalsIgnoreCase("spock")    ||
                 (p1.jogada).equalsIgnoreCase("spock")   && (p2.jogada).equalsIgnoreCase("pedra")     ||
                 (p1.jogada).equalsIgnoreCase("spock")   && (p2.jogada).equalsIgnoreCase("tesoura")     )
-            System.out.println("jogador 1");
+            System.out.println(p1.nome + " gahou!");
 
         // JOGADOR 2 GANHOU
         else
-            System.out.println("jogador 2");
+            System.out.println(p2.nome + " ganhou!");
         
     }
 }
