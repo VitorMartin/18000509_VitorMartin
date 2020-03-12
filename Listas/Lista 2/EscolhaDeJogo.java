@@ -3,8 +3,12 @@ import java.util.Scanner;
 public class EscolhaDeJogo{
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Qual modo seseja jogar? [PPT / RPSLS]");
-        String escolha = scanner.nextLine();
+        String escolha;
+        do{
+            System.out.println("Qual modo deseja jogar? [PPT / RPSLS]");
+            escolha = scanner.nextLine();
+        }while(!(escolha.equalsIgnoreCase("PPT")   ||
+                 escolha.equalsIgnoreCase("RPSLS")   ));
 
         if(escolha.equalsIgnoreCase("PPT")){
             PPT jogo = new PPT();
@@ -15,6 +19,5 @@ public class EscolhaDeJogo{
             RPSLS jogo = new RPSLS();
             jogo.jogar();
         }
-
     }
 }

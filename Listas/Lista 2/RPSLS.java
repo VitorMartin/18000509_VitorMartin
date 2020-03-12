@@ -30,7 +30,7 @@ public class RPSLS{
         
         // EMPATE
         if     ((p1.jogada).equalsIgnoreCase(p2.jogada))
-            System.out.println("empate");
+            System.out.println("Empate! Muito bom! Uma estrela!");
 
         // JOGADOR 1 GANHOU
         else if((p1.jogada).equalsIgnoreCase("pedra")   && (p2.jogada).equalsIgnoreCase("tesoura") ||
