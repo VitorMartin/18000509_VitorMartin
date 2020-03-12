@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class EscolhaDeJogo{
     public static void main(String[] args) {
-        Scanner scanner = new Scanner();
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Qual modo seseja jogar? [PPT / RPSLS]");
         String escolha = scanner.nextLine();
 

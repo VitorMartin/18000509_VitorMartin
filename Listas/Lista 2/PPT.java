@@ -3,8 +3,7 @@ import java.util.Scanner;
 public class PPT{
     void jogar(){
         Scanner scanner = new Scanner(System.in);
-        PPT ppt = new PPT();
-        
+
         Jogador p1 = new Jogador();
         System.out.println("Nome do player 1: ");
         p1.nome = scanner.nextLine();
