@@ -81,7 +81,6 @@ public class Main{
                 tentativaSenha = sc.nextLine();
             }
         }
-
         Conta conta = new Conta(usr);
 
         Jogo jogo;
@@ -159,7 +158,7 @@ public class Main{
             System.out.println("--------------------");
         }
     }
-    
+  
     public static boolean menu() {
         System.out.println("usr -c (change user)\t, usr -e (change email)\t, usr -i (user info),\n"
                 + "acc -j (add game)\t, acc -c (add credits)\t,  acc -i (account info),\n"

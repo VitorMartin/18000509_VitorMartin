@@ -19,6 +19,7 @@ public class Usuario {
 
     public boolean loginCorreto(String tentativaNick, String tentativaSenha){
         return this.nick.equals(tentativaNick) && this.senha.equals(tentativaSenha);
+
     }
 
     public String getNick() {
