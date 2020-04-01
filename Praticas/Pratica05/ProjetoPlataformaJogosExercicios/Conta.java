@@ -38,4 +38,13 @@ public class Conta {
         resposta += "]}";
         return resposta;
     }
+  
+    public String getInfoAsCSV() {
+        String resposta = "";
+        resposta = String.format("usuario;%s\ncreditos;%f\njogos\n", this.usuario.getNick(), this.creditos);
+        for (Jogo jogo : jogos) {
+            resposta += jogo.getInfoAsCSV() + "\n";
+        }
+        return resposta;
+    }
 }
