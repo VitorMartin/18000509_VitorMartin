@@ -41,7 +41,11 @@ public class Jogo {
         this.multiplayer = multiplayer;
     }
 
-    public String getInfo(){
+    public String getInfo() {
         return String.format("{nome:\"%s\", genero:\"%s\", descricao:\"%s\"}", this.nome, this.genero, this.descricao);
+    }
+
+    public String getInfoAsCSV(){
+        return String.format("nome;%s\ngenero;%s\ndescricao;%s\n", this.nome, this.genero, this.descricao);
     }
 }
