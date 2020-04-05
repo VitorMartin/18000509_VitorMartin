@@ -52,6 +52,9 @@ public class Main{
         if (command.equals("n")) {
             criandoConta = true;
             System.out.println("Digite seu nick, email e senha para criar conta.");
+            delete(caminhoConta);
+            delete(caminhoJogos);
+            delete(caminhoUsr);
             nick = sc.nextLine();
             email = sc.nextLine();
             senha = sc.nextLine();
@@ -68,6 +71,9 @@ public class Main{
         else {
             criandoConta = true;
             System.out.println("Comando nao faz sentido. Digite seu nick, email e senha para criar nova conta.");
+            delete(caminhoConta);
+            delete(caminhoJogos);
+            delete(caminhoUsr);
             nick = sc.nextLine();
             email = sc.nextLine();
             senha = sc.nextLine();
@@ -165,5 +171,19 @@ public class Main{
                 + "jog -i (show games)\n"
                 + "help (show commands)\t, exit (stop program).");
         return true;
+    }
+
+    public static boolean delete(String caminho){
+        try{
+            FileWriter fw = new FileWriter(caminho);
+            fw.write("");
+            fw.close();
+            return true;
+        }
+
+        catch (Exception e){
+            System.out.println(e);
+            return false;
+        }
     }
 }
