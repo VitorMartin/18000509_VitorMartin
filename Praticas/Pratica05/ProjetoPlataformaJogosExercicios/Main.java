@@ -56,12 +56,14 @@ public class Main{
             email = sc.nextLine();
             senha = sc.nextLine();
         }
+
         // usuario existe e quer fazer login
         else if (command.equals("l") && usrExistir) {
             nick = dbUsr[0];
             email = dbUsr[1];
             senha = dbUsr[2];
         }
+
         // usuario quer fazer login e conta NAO existe --> criar nova conta
         else {
             criandoConta = true;
@@ -129,20 +131,18 @@ public class Main{
                 System.out.println(conta.getInfo());
             }
             
+            else if (command.equals("jog -i")) {
+                System.out.println(conta.getJogosAsCSV());
+            }
+
             // MENU COMMANDS ===================================
             else if (command.equals("help")) {
                 menu();
             }
 
             else if (command.equals("exit")) {
-                try {
-                    FileWriter fw = new FileWriter("Informacoes_da_conta.csv");
-                    fw.write(conta.getInfoAsCSV());
-                    fw.close();
-                } 
-                catch (Exception e) {
-                    System.out.println(e);
-                }
+                usr.save();
+                conta.save();
                 System.exit(0);
             }
 
@@ -162,6 +162,7 @@ public class Main{
     public static boolean menu() {
         System.out.println("usr -c (change user)\t, usr -e (change email)\t, usr -i (user info),\n"
                 + "acc -j (add game)\t, acc -c (add credits)\t,  acc -i (account info),\n"
+                + "jog -i (show games)\n"
                 + "help (show commands)\t, exit (stop program).");
         return true;
     }
