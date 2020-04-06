@@ -41,6 +41,10 @@ public class Conta {
         return usr.getNome();
     }
 
+    public double getSaldo() {
+        return saldo;
+    }
+
     public String getInfo(){
         return String.format("Usuario : %s, |\t| idConta : %s , \t saldo : %.2f", usr.getInfo(), this.idConta, this.saldo);
     }
