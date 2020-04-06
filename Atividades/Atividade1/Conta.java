@@ -33,25 +33,12 @@ public class Conta {
         }
     }
 
-    // public String pagar(Conta quemPaga, String code){
-
-    //     if(this.saldo >= valor){
-
-    //     }
-        
-    //     return "return receber";
-    // }
-
     public String getID() {
         return idConta;
     }
 
     public String getNome(){
         return usr.getNome();
-    }
-
-    public double getSaldo() {
-        return saldo;
     }
 
     public String getInfo(){
