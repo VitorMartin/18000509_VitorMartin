@@ -104,6 +104,11 @@ public class Main{
                 email = sc.nextLine();
                 senha = sc.nextLine();
                 usr = new Usuario(nick, email, senha);
+                
+                delete(caminhoConta);
+                delete(caminhoJogos);
+                delete(caminhoUsr);
+
                 conta = new Conta(usr);
             }
 
@@ -166,10 +171,10 @@ public class Main{
     }
   
     public static boolean menu() {
-        System.out.println("usr -c (change user)\t, usr -e (change email)\t, usr -i (user info),\n"
-                + "acc -j (add game)\t, acc -c (add credits)\t,  acc -i (account info),\n"
-                + "jog -i (show games)\n"
-                + "help (show commands)\t, exit (stop program).");
+        System.out.println("usr -c (change user) , usr -e (change email) , usr -i (user info),\n"
+                         + "acc -j (add game)    , acc -c (add credits)  , acc -i (account info),\n"
+                         + "jog -i (show games)  ,\n"
+                         + "help (show commands) , exit (stop program).");
         return true;
     }
 

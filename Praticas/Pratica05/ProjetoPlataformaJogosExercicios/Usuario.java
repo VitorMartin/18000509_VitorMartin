@@ -32,7 +32,7 @@ public class Usuario {
 
     public void setEmail(String novoEmail) {
         this.email = novoEmail;
-
+        
         this.save();
     }
 
