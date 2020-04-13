@@ -5,4 +5,13 @@ public class Jounin extends RankedNinja{
         super(name, family, misison);
     }
 
+    @Override
+    public void train(){
+        System.out.println("Override Jounin.train()");
+    }
+
+    // @Override // -------------> NAO PODE DAR OVERRIDE PARA ALGUEM QUE EH FINAL
+    // public void gotoMission(){
+
+    // }
 }

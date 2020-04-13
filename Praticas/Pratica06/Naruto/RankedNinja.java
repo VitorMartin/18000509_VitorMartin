@@ -6,10 +6,14 @@ public class RankedNinja extends Ninja{
     public RankedNinja(String name, String family, String mission){
         super(name, family);
         this.mission = mission;
-        System.out.println("mission = " + mission);
     }
 
-    public void gotoMission(){
+    @Override
+    public void train(){
+        System.out.println("Override rankedNinja.train()");
+    }
+
+    public final void gotoMission(){
         System.out.println("Indo para missao: " + this.mission);
     }
 }
