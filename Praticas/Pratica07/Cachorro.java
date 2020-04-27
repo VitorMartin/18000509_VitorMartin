@@ -1,5 +1,3 @@
-package com.company;
-
 public class Cachorro extends Animal {
     @Override
     public void comer() {
