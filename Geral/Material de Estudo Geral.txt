@@ -1,0 +1,14 @@
+Apostila Caelum
+https://www.caelum.com.br/apostila-java-orientacao-objetos/
+
+Tutorial de Git e GitHub - Loiane
+https://www.youtube.com/watch?v=UMhskLXJuq4&t=2s
+
+Entendendo Git - Fabio Akita
+https://www.youtube.com/watch?v=6Czd1Yetaac
+
+Git para inicicantes
+https://hipsters.tech/guia-do-iniciante-em-github-hipsters-184/
+
+Git e GitHub
+https://hipsters.tech/git-e-github-hipsters-109/
