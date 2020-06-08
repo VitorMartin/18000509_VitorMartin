@@ -78,7 +78,14 @@ public class App {
 
                 case 5:
                     // Postar mensagens
-                    
+                    for (Funcionario funcionario : funcionarios) {
+                        if (horario == Horarios.NORMAL) {
+                            funcionario.msgNormal();
+                        }
+                        else {
+                            funcionario.msgExtra();
+                        }
+                    }
                 case 9:
                     // Sair
                     break;
