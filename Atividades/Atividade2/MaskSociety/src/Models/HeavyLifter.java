@@ -1,11 +1,11 @@
-package Interfaces;
+package Models;
 
 import Funcionario.Funcionario;
 
 public class HeavyLifter extends Funcionario{
 
-    public HeavyLifter(String nick, String email) {
-        super(nick, email);
+    public HeavyLifter(String nick, String email, String func) {
+        super(nick, email, func);
     }
 
     public void mensagemNormal(){
