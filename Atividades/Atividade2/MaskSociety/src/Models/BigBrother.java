@@ -11,12 +11,12 @@ public class BigBrother extends Funcionario{
 
     @Override
     public void msgNormal() {
-        System.out.println("Nick: " + this.getNick() + "  ==>  mensagem NORMAL");
+        System.out.println("Nick: " + this.getNick() + " Sempre ajudando as pessoas membros ou não S2!");
     }
     
     @Override
     public void msgExtra(){
-        System.out.println("Nick: " + this.getNick() + "  ==>  mensagem EXTRA");
+        System.out.println("Nick: " + this.getNick() + "...");
     }
 }
 
