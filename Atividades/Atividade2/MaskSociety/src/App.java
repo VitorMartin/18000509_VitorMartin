@@ -6,11 +6,11 @@ import java.util.Scanner;
 
 import Enums.Horarios;
 import Funcionario.Funcionario;
-import Interfaces.BigBrother;
-import Interfaces.HeavyLifter;
-import Interfaces.MobileMember;
-import Interfaces.ScriptGuys;
 import Menu.Menu;
+import Models.BigBrother;
+import Models.HeavyLifter;
+import Models.MobileMember;
+import Models.ScriptGuy;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -32,19 +32,19 @@ public class App {
 
                     switch (func) {
                         case 1:
-                            funcionarios.add(new BigBrother(nick, email));
+                            funcionarios.add(new BigBrother(nick, email, "BigBrother"));
                             break;
 
                         case 2:
-                            funcionarios.add(new HeavyLifter(nick, email));
+                            funcionarios.add(new HeavyLifter(nick, email, "HeavyLifter"));
                             break;
                         
                         case 3:
-                            funcionarios.add(new MobileMember(nick, email));
+                            funcionarios.add(new MobileMember(nick, email, "MobileMember"));
                             break;
 
                         case 4:
-                            funcionarios.add(new ScriptGuys(nick, email));
+                            funcionarios.add(new ScriptGuy(nick, email, "ScriptGuy"));
                             break;
                     
                         default:
@@ -54,6 +54,9 @@ public class App {
 
                 case 2:
                     // Apresentar membros
+                    for (Funcionario funcionario : funcionarios) {
+                        funcionario.show();
+                    }
                     break;
 
                 case 3:
