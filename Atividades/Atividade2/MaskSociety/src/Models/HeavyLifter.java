@@ -1,6 +1,7 @@
 package Models;
 
 import Funcionario.Funcionario;
+import Interfaces.PostarMensagens;
 
 public class HeavyLifter extends Funcionario{
 
@@ -8,12 +9,13 @@ public class HeavyLifter extends Funcionario{
         super(nick, email, func);
     }
 
-    public void mensagemNormal(){
-        System.out.println("Nick: " + this.getNick() + "  ==>  mensagem NORMAL"); // "Podem contar conosco!"
+    @Override
+    public void msgNormal() {
+        System.out.println("Nick: " + this.getNick() + "  ==>  mensagem NORMAL");
     }
-
-    public void mensagemExtra(){
-        System.out.println("Nick: " + this.getNick() + "  ==>  mensagem EXTRA"); // "N00b_qu3_n_Se_r3pita.bat"
+    
+    @Override
+    public void msgExtra(){
+        System.out.println("Nick: " + this.getNick() + "  ==>  mensagem EXTRA");
     }
 }
-

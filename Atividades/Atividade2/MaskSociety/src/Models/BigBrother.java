@@ -1,6 +1,7 @@
 package Models;
 
 import Funcionario.Funcionario;
+import Interfaces.PostarMensagens;
 
 public class BigBrother extends Funcionario{
 
@@ -8,11 +9,14 @@ public class BigBrother extends Funcionario{
         super(nick, email, func);
     }
 
-    public void mensagemNormal(){
-        System.out.println("Nick: " + this.getNick() + "  ==>  mensagem NORMAL"); // "Sempre ajudando as pessoas membros ou não S2!"
+    @Override
+    public void msgNormal() {
+        System.out.println("Nick: " + this.getNick() + "  ==>  mensagem NORMAL");
     }
-
-    public void mensagemExtra(){
-        System.out.println("Nick: " + this.getNick() + "  ==>  mensagem EXTRA"); // "..."
+    
+    @Override
+    public void msgExtra(){
+        System.out.println("Nick: " + this.getNick() + "  ==>  mensagem EXTRA");
     }
 }
+
