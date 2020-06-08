@@ -61,7 +61,10 @@ public class App {
 
                 case 3:
                     // Remover colaborador
-
+                    for (int i = 0; i < funcionarios.size(); i++) {
+                        System.out.println(i + " - " + funcionarios.get(i).getNick());
+                    }
+                    funcionarios.remove(scanner.nextInt());
                     break;
 
                 case 4:
@@ -78,7 +81,6 @@ public class App {
                     
                 case 9:
                     // Sair
-
                     break;
 
                 default:
