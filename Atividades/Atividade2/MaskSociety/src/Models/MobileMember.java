@@ -11,11 +11,11 @@ public class MobileMember extends Funcionario{
 
     @Override
     public void msgNormal() {
-        System.out.println("Nick: " + this.getNick() + "  ==>  mensagem NORMAL");
+        System.out.println("Nick: " + this.getNick() + "Happy Coding!");
     }
     
     @Override
     public void msgExtra(){
-        System.out.println("Nick: " + this.getNick() + "  ==>  mensagem EXTRA");
+        System.out.println("Nick: " + this.getNick() + "Happy_C0d1ng. Maskers");
     }
 }
