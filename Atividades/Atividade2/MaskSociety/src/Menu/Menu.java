@@ -48,8 +48,4 @@ public class Menu{
         );
         return scanner.nextInt();
     }
-
-    public void apresentarMensagem() {
-
-    }
 }
