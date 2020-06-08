@@ -1,11 +1,11 @@
-package Interfaces;
+package Models;
 
 import Funcionario.Funcionario;
 
-public class ScriptGuys extends Funcionario{
+public class ScriptGuy extends Funcionario{
 
-    public ScriptGuys(String nick, String email) {
-        super(nick, email);
+    public ScriptGuy(String nick, String email, String func) {
+        super(nick, email, func);
     }
 
     public void mensagemNormal(){
