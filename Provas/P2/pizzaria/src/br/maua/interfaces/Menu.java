@@ -1,6 +1,7 @@
 package br.maua.interfaces;
 
-import br.maua.funcionario.Usuario;
+import br.maua.classes.Usuario;
+import br.maua.maps.Pagamentos;
 
 public interface Menu {
 
@@ -25,6 +26,11 @@ public interface Menu {
 
     static void despedida(){
         System.out.println("Ate mais!");
+    }
+
+    static void opcoesDePagamento(){
+        System.out.println("Formas de pagamento:");
+        System.out.println(Pagamentos.mapToString());
     }
 
     static void menuPrincipal() {

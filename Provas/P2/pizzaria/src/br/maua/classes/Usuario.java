@@ -1,4 +1,4 @@
-package br.maua.funcionario;
+package br.maua.classes;
 
 import br.maua.interfaces.Seguranca;
 

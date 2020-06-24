@@ -1,7 +1,6 @@
-package br.maua.cozinha;
+package br.maua.classes;
 
 import br.maua.enumerates.Estado;
-import br.maua.enumerates.Pagamento;
 
 import java.util.Random;
 
@@ -10,10 +9,10 @@ public class Pedido {
     private final String id;
     private String descricao;
     private Double valor;
-    private Pagamento pagamento;
+    private String pagamento;
     private Estado estado = Estado.REALIZADO;
 
-    public Pedido(String descricao, Double valor, Pagamento pagamento) {
+    public Pedido(String descricao, Double valor, String pagamento) {
         this.id = setId();
         this.descricao = descricao;
         this.valor = valor;
