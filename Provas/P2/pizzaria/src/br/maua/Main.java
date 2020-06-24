@@ -72,6 +72,11 @@ public class Main implements Menu {
 
             switch (inp){
                 case "1":
+                    if (!usr.isAdmin){
+                        System.out.println("Voce nao possui nivel de Admin para criar novos pedidos." +
+                                           "Logue novamente com uma conta de Admin.");
+                        break;
+                    }
                     String descricao = input("Descricao: ");
                     Double valor = Double.parseDouble(input("Valor: "));
                     Menu.opcoesDePagamento();
