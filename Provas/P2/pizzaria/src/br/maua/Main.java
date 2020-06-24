@@ -21,12 +21,10 @@ public class Main {
         System.out.println(usr.toString());
 
         // TESTANDO PEDIDO
-        Pedido pedido1 = new Pedido("Mucarela", Pagamento.CREDITO);
-        Pedido pedido2 = new Pedido("Calabresa", Pagamento.VALE_ALIMENTACAO);
-        Pedido pedido3 = new Pedido("Sabor inexistente", Pagamento.VALE_ALIMENTACAO);
+        Pedido pedido1 = new Pedido("1 refri, 1 calabresa", 30.52, Pagamento.CREDITO);
+        Pedido pedido2 = new Pedido("1 quatro queijos", 15., Pagamento.VALE_ALIMENTACAO);
         System.out.println(pedido1.toString());
         System.out.println(pedido2.toString());
-        System.out.println(pedido3.toString());
 
     }
 

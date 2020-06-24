@@ -1,22 +1,22 @@
 package br.maua.cozinha;
 
+import br.maua.enumerates.Estado;
 import br.maua.enumerates.Pagamento;
-import br.maua.maps.Sabores;
 
 import java.util.Random;
 
-public class Pedido implements Sabores {
+public class Pedido {
 
-    private final String id, descricao, estado;
-    private final Pagamento pagamento;
+    private final String id, descricao;
     private final Double valor;
+    private final Pagamento pagamento;
+    private Estado estado = Estado.REALIZADO;
 
-    public Pedido(String descricao, Pagamento pagamento) {
+    public Pedido(String descricao, Double valor, Pagamento pagamento) {
         this.id = setId();
         this.descricao = descricao;
-        this.valor = Sabores.valores.get(descricao);
+        this.valor = valor;
         this.pagamento = pagamento;
-        this.estado = "estado";
     }
 
     private String setId(){
@@ -33,9 +33,10 @@ public class Pedido implements Sabores {
         return "Pedido{" +
                 "id='" + id + '\'' +
                 ", descricao='" + descricao + '\'' +
+                ", valor='" + valor + '\'' +
                 ", pagamento='" + pagamento + '\'' +
-                ", estado='" + estado + '\'' +
-                ", valor=" + valor +
+                ", estado='" + estado + '\''
+                 +
                 '}';
     }
 }
