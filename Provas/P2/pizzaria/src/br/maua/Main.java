@@ -1,10 +1,10 @@
 package br.maua;
 
-import br.maua.cozinha.Pedido;
+import br.maua.classes.Pedido;
 import br.maua.enumerates.Estado;
-import br.maua.enumerates.Pagamento;
-import br.maua.funcionario.Usuario;
+import br.maua.classes.Usuario;
 import br.maua.interfaces.Menu;
+import br.maua.maps.Pagamentos;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -53,7 +53,8 @@ public class Main implements Menu {
 
         // ***** DESENVOLVENDO LOGICA DA INTERACAO COM O USUARIO ***** //
 
-        int inp = 0;
+        String inp = "";
+        ArrayList<Pedido> pedidos = new ArrayList<>();
 
         // Fazendo login
         Menu.login();
@@ -65,24 +66,28 @@ public class Main implements Menu {
         System.out.println('\n');
 
         // Menu principal
-        while (inp != 9){
+        while (!inp.equals("9")){
             Menu.menuPrincipal();
-            inp = inputInt();
+            inp = input("");
 
             switch (inp){
-                case 1:
-                    System.out.println("Novo");
+                case "1":
+                    String descricao = input("Descricao: ");
+                    Double valor = Double.parseDouble(input("Valor: "));
+                    Menu.opcoesDePagamento();
+                    String pagamento = Pagamentos.map.get(Integer.parseInt(input("")));
+                    adicionarPedidoNaFila(pedidos, new Pedido(descricao, valor, pagamento));
                     break;
 
-                case 2:
+                case "2":
                     System.out.println("Mostrar");
                     break;
 
-                case 3:
+                case "3":
                     System.out.println("Alterar");
                     break;
 
-                case 9:
+                case "9":
                     Menu.despedida();
                     break;
 
@@ -100,10 +105,6 @@ public class Main implements Menu {
         String inp = scanner.nextLine();
 //        scanner.close(); // Nao sei pq, mas se eu fechar o scanner, so posso chamar essa funcao UMA vez.
         return inp;
-    }
-
-    private static int inputInt(){
-        return Integer.parseInt(input(""));
     }
 
     private static Boolean adicionarPedidoNaFila(ArrayList<Pedido> pedidos, Pedido pedido){
