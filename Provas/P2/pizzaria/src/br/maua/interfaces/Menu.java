@@ -1,7 +1,10 @@
 package br.maua.interfaces;
 
+import br.maua.classes.Pedido;
 import br.maua.classes.Usuario;
 import br.maua.maps.Pagamentos;
+
+import java.util.ArrayList;
 
 public interface Menu {
 
@@ -33,6 +36,14 @@ public interface Menu {
         System.out.println(Pagamentos.mapToString());
     }
 
+    static void mostrarPedidos(ArrayList<Pedido> pedidos) {
+        String str = "";
+        for (Pedido p : pedidos) {
+            str += p.toString() + "\n";
+        }
+        System.out.println(str);
+    }
+
     static void menuPrincipal() {
         System.out.println(
             "\nPizzaria o Rato que Ri:" + '\n' +
@@ -42,4 +53,5 @@ public interface Menu {
             "9 - Sair"
         );
     }
+
 }

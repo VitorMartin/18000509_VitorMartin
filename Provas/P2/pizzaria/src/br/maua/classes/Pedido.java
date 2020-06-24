@@ -2,6 +2,7 @@ package br.maua.classes;
 
 import br.maua.enumerates.Estado;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Pedido {

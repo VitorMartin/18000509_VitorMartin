@@ -73,7 +73,7 @@ public class Main implements Menu {
             switch (inp){
                 case "1":
                     if (!usr.isAdmin){
-                        System.out.println("Voce nao possui nivel de Admin para criar novos pedidos." +
+                        System.out.println("Voce nao possui nivel de Admin para criar novos pedidos.\n" +
                                            "Logue novamente com uma conta de Admin.");
                         break;
                     }
@@ -85,11 +85,23 @@ public class Main implements Menu {
                     break;
 
                 case "2":
-                    System.out.println("Mostrar");
+                    Menu.mostrarPedidos(pedidos);
                     break;
 
                 case "3":
-                    System.out.println("Alterar");
+                    if (!usr.isAdmin){
+                        System.out.println("Voce nao possui nivel de Admin para alterar pedidos.\n" +
+                                           "Logue novamente com uma conta de Admin.");
+                        break;
+                    }
+                    String id = input("ID do pedido: ");
+                    Estado novoEstado = Estado.PREPARACAO;
+                    int indiceDoPedido = encontrarPedidoPorId(pedidos, id);
+                    if (indiceDoPedido == -1){
+                        System.out.println("ID nao encontrado.");
+                        break;
+                    }
+                    pedidos.get(indiceDoPedido).mudarEstado(novoEstado);
                     break;
 
                 case "9":
@@ -116,23 +128,13 @@ public class Main implements Menu {
         return pedidos.add(pedido); // retorna true ou false se conseguiu adicionar Pedido na lista
     }
 
-    private static Boolean mudarEstadoDoPedido(ArrayList<Pedido> pedidos, String id, Estado novoEstado){
-        for (Pedido p : pedidos) {
-            if (id.equals(p.getId())){
-                p.mudarEstado(novoEstado);
-                return true;
+    private static int encontrarPedidoPorId(ArrayList<Pedido> pedidos, String id){
+        for (int i = 0; i < pedidos.size(); i++) {
+            if (id.equals(pedidos.get(i).getId())){
+                return i;
             }
         }
-        return false; // retorna falso se nao encontrar id
-    }
-
-    private static String pedidosToString(ArrayList<Pedido> pedidos){
-        String str = "ArrayList{\n";
-        for (Object p : pedidos) {
-            str += "          " + p.toString() + "\n";
-        }
-        str += '}';
-        return str;
+        return -1; // retorna -1 se nao encontrar o id
     }
 
 }
