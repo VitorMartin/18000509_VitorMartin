@@ -1,7 +1,9 @@
 package br.maua;
 
 import br.maua.cozinha.Pedido;
+import br.maua.enumerates.Estado;
 import br.maua.enumerates.Pagamento;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -39,6 +41,13 @@ public class Main {
         adicionarPedidoNaFila(pedidos, new Pedido("1 refri, 1 calabresa", 30.52, Pagamento.CREDITO));
         adicionarPedidoNaFila(pedidos, new Pedido("2 quatro queijos", 15., Pagamento.VALE_ALIMENTACAO));
         adicionarPedidoNaFila(pedidos, new Pedido("3 brotinhos", 50., Pagamento.DINHEIRO));
+//        System.out.println(pedidosToString(pedidos));
+
+        // TESTANDO MUDAR ESTADO DO PEDIDO
+        System.out.println(pedidosToString(pedidos));
+        String id = input("id: ");
+        Estado novoEstado = Estado.PREPARACAO;
+        mudarEstadoDoPedido(pedidos, id, novoEstado);
         System.out.println(pedidosToString(pedidos));
 
     }
@@ -51,8 +60,18 @@ public class Main {
         return inp;
     }
 
-private static boolean adicionarPedidoNaFila(ArrayList<Pedido> pedidos, Pedido pedido){
+    private static Boolean adicionarPedidoNaFila(ArrayList<Pedido> pedidos, Pedido pedido){
         return pedidos.add(pedido); // retorna true ou false se conseguiu adicionar Pedido na lista
+    }
+
+    private static Boolean mudarEstadoDoPedido(ArrayList<Pedido> pedidos, String id, Estado novoEstado){
+        for (Pedido p : pedidos) {
+            if (id.equals(p.getId())){
+                p.mudarEstado(novoEstado);
+                return true;
+            }
+        }
+        return false; // retorna falso se nao encontrar id
     }
 
     private static String pedidosToString(ArrayList<Pedido> pedidos){
@@ -63,6 +82,5 @@ private static boolean adicionarPedidoNaFila(ArrayList<Pedido> pedidos, Pedido p
         str += '}';
         return str;
     }
-
 
 }

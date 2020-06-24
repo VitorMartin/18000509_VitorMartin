@@ -3,7 +3,6 @@ package br.maua.cozinha;
 import br.maua.enumerates.Estado;
 import br.maua.enumerates.Pagamento;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Pedido {
@@ -50,7 +49,5 @@ public class Pedido {
                  +
                 '}';
     }
-
-
 
 }
