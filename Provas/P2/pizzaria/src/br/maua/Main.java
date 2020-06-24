@@ -1,16 +1,18 @@
 package br.maua;
 
+import br.maua.funcionario.Usuario;
+
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        String a = input("str a: ");
-        String b = input("str b: ");
-
-        System.out.println(a);
-        System.out.println(b);
+        String  nome = input("Nome: "),
+                email = input("Email"),
+                senha = input("Senha: ");
+        Usuario usr = new Usuario(nome, email, senha);
+        System.out.println(usr.toString());
 
     }
 

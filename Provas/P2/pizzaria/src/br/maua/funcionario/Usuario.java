@@ -8,4 +8,13 @@ public class Usuario {
         this.email = email;
         this.senha = senha;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                '}';
+    }
 }
