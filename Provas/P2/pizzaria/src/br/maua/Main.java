@@ -53,13 +53,44 @@ public class Main implements Menu {
 
         // ***** DESENVOLVENDO LOGICA DA INTERACAO COM O USUARIO ***** //
 
+        int inp = 0;
+
         // Fazendo login
         Menu.login();
-        String nome  = input("");
-        String email = input("");
-        String senha = input("");
+        String nome  = "conde"; //input("");
+        String email = "email@domain"; //input("");
+        String senha = "123456"; //input("");
         Usuario usr = new Usuario(nome, email, senha);
         Menu.saudacao(usr);
+        System.out.println('\n');
+
+        // Menu principal
+        while (inp != 9){
+            Menu.menuPrincipal();
+            inp = inputInt();
+
+            switch (inp){
+                case 1:
+                    System.out.println("Novo");
+                    break;
+
+                case 2:
+                    System.out.println("Mostrar");
+                    break;
+
+                case 3:
+                    System.out.println("Alterar");
+                    break;
+
+                case 9:
+                    Menu.despedida();
+                    break;
+
+                default:
+                    System.out.println("Comando nao reconhecido");
+                    break;
+            }
+        }
 
     }
 
@@ -69,6 +100,10 @@ public class Main implements Menu {
         String inp = scanner.nextLine();
 //        scanner.close(); // Nao sei pq, mas se eu fechar o scanner, so posso chamar essa funcao UMA vez.
         return inp;
+    }
+
+    private static int inputInt(){
+        return Integer.parseInt(input(""));
     }
 
     private static Boolean adicionarPedidoNaFila(ArrayList<Pedido> pedidos, Pedido pedido){
