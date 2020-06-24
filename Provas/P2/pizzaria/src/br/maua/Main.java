@@ -3,12 +3,13 @@ package br.maua;
 import br.maua.cozinha.Pedido;
 import br.maua.enumerates.Estado;
 import br.maua.enumerates.Pagamento;
-import com.sun.org.apache.xpath.internal.operations.Bool;
+import br.maua.funcionario.Usuario;
+import br.maua.interfaces.Menu;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
+public class Main implements Menu {
 
     public static void main(String[] args) {
 
@@ -37,19 +38,19 @@ public class Main {
 //        System.out.println(pedido3.toString());
 
         // TESTANDO CRIAR NOVO PEDIDO NO ARRAYLIST
-        ArrayList<Pedido> pedidos = new ArrayList<>();
-        adicionarPedidoNaFila(pedidos, new Pedido("1 refri, 1 calabresa", 30.52, Pagamento.CREDITO));
-        adicionarPedidoNaFila(pedidos, new Pedido("2 quatro queijos", 15., Pagamento.VALE_ALIMENTACAO));
-        adicionarPedidoNaFila(pedidos, new Pedido("3 brotinhos", 50., Pagamento.DINHEIRO));
+//        ArrayList<Pedido> pedidos = new ArrayList<>();
+//        adicionarPedidoNaFila(pedidos, new Pedido("1 refri, 1 calabresa", 30.52, Pagamento.CREDITO));
+//        adicionarPedidoNaFila(pedidos, new Pedido("2 quatro queijos", 15., Pagamento.VALE_ALIMENTACAO));
+//        adicionarPedidoNaFila(pedidos, new Pedido("3 brotinhos", 50., Pagamento.DINHEIRO));
 //        System.out.println(pedidosToString(pedidos));
 
         // TESTANDO MUDAR ESTADO DO PEDIDO
-        System.out.println(pedidosToString(pedidos));
-        String id = input("id: ");
-        Estado novoEstado = Estado.PREPARACAO;
-        mudarEstadoDoPedido(pedidos, id, novoEstado);
-        System.out.println(pedidosToString(pedidos));
-
+//        System.out.println(pedidosToString(pedidos));
+//        String id = input("id: ");
+//        Estado novoEstado = Estado.PREPARACAO;
+//        mudarEstadoDoPedido(pedidos, id, novoEstado);
+//        System.out.println(pedidosToString(pedidos));
+        
     }
 
     private static String input(String prompt) {
