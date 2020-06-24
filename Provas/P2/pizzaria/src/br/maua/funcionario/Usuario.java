@@ -14,6 +14,11 @@ public class Usuario implements Seguranca {
         this.isAdmin = Seguranca.autenticarSenha(senha);
     }
 
+    // GETTERS E SETTERS
+    public String getNome() {
+        return this.nome;
+    }
+
     @Override
     public String toString() {
         return "Usuario{" +
@@ -23,4 +28,5 @@ public class Usuario implements Seguranca {
                 ", existe='" + isAdmin + '\'' +
                 '}';
     }
+
 }

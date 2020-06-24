@@ -50,7 +50,17 @@ public class Main implements Menu {
 //        Estado novoEstado = Estado.PREPARACAO;
 //        mudarEstadoDoPedido(pedidos, id, novoEstado);
 //        System.out.println(pedidosToString(pedidos));
-        
+
+        // ***** DESENVOLVENDO LOGICA DA INTERACAO COM O USUARIO ***** //
+
+        // Fazendo login
+        Menu.login();
+        String nome  = input("");
+        String email = input("");
+        String senha = input("");
+        Usuario usr = new Usuario(nome, email, senha);
+        Menu.saudacao(usr);
+
     }
 
     private static String input(String prompt) {
