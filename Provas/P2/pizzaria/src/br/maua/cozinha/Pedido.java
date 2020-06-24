@@ -3,13 +3,15 @@ package br.maua.cozinha;
 import br.maua.enumerates.Estado;
 import br.maua.enumerates.Pagamento;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Pedido {
 
-    private final String id, descricao;
-    private final Double valor;
-    private final Pagamento pagamento;
+    private final String id;
+    private String descricao;
+    private Double valor;
+    private Pagamento pagamento;
     private Estado estado = Estado.REALIZADO;
 
     public Pedido(String descricao, Double valor, Pagamento pagamento) {
@@ -28,6 +30,15 @@ public class Pedido {
         return idGerado.toString();
     };
 
+    public String getId() {
+        return this.id;
+    }
+
+    public boolean mudarEstado(Estado novoEstado){
+        this.estado = novoEstado;
+        return true;
+    }
+
     @Override
     public String toString() {
         return "Pedido{" +
@@ -39,4 +50,7 @@ public class Pedido {
                  +
                 '}';
     }
+
+
+
 }
