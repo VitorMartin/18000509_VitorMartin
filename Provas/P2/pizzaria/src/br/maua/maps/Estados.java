@@ -13,10 +13,17 @@ public interface Estados {
     }};
 
     static String mapToString() {
+        // Template de como a String deve ficar:
+        /*
+        0 - REALIZADO
+        1 - PREPARACAO
+        2 - SAIU_PARA_ENTREGA
+         */
         StringBuilder str = new StringBuilder();
-        for (int i = 0; i < map.size(); i++) {
+        for (int i = 0; i < map.size() - 1; i++) {
             str.append(i).append(" - ").append(map.get(i)).append("\n");
         }
+        str.append(map.size() - 1).append(" - ").append(map.get(map.size() - 1));
         return str.toString();
     }
 }

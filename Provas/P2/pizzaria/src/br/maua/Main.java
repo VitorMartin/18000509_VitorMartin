@@ -19,9 +19,9 @@ public class Main implements Menu {
 
         // Fazendo login
         Menu.login();
-        String nome  = "conde"; //input("");
-        String email = "email@domain"; //input("");
-        String senha = "123456"; //input("");
+        String nome  = input("Nome:");
+        String email = input("Email:");
+        String senha = input("Senha");
         Usuario usr = new Usuario(nome, email, senha);
         Menu.saudacao(usr);
         System.out.println('\n');

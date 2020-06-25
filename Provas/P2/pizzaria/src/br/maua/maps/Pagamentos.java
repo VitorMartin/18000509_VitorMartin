@@ -14,11 +14,18 @@ public interface Pagamentos {
     }};
 
     static String mapToString() {
-        String str = "";
-        for (int i = 0; i < map.size(); i++) {
-            str += i + " - " + map.get(i) + "\n";
+        // Template de como a String deve ficar:
+        /*
+        0 - CREDITO
+        1 - DEBITO
+        2 - DINHEIRO
+         */
+        StringBuilder str = new StringBuilder();
+        for (int i = 0; i < map.size() - 1; i++) {
+            str.append(i).append(" - ").append(map.get(i)).append("\n");
         }
-        return str;
+        str.append(map.size() - 1).append(" - ").append(map.get(map.size() - 1));
+        return str.toString();
     }
 
 }

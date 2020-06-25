@@ -11,7 +11,7 @@ public interface Menu {
 
     static void login(){
         System.out.println(
-            "\nDigite seu nome, email e senha, apertando [ENTER] entre cada um: \n"
+            "\nFaca seu login:"
         );
     }
 
@@ -23,7 +23,7 @@ public interface Menu {
          */
         String str = "\nBem-vindo, " + usr.getNome() + "!\nVoce";
         str += usr.isAdmin ? "" : " NAO";
-        str += " esta registrado como Admin.\n";
+        str += " esta registrado como Admin.";
 
         System.out.println(str);
     }
