@@ -3,7 +3,21 @@ package br.maua.maps;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * HashMap dos estados possíveis de um pedido.
+ *
+ * Por hora, funciona igual um ArrayList, porém está implementado como
+ * HashMap, pois ele dá mais flexibilidade, caso queira alterar a chave para qualquer outro objeto.
+ *
+ * Key   : Integer
+ * Value : String
+ */
+
 public interface Estados {
+
+    /**
+     * HashMap dos estados possíveis de um pedido.
+     */
     Map<Integer, String> map = new HashMap<Integer, String>() {{
         put(0, "REALIZADO");
         put(1, "PREPARACAO");
@@ -12,6 +26,12 @@ public interface Estados {
         put(4, "DEVOLVIDO");
     }};
 
+    /**
+     * Semelhante ao método Object.toString(), que retorna a instância de um Objeto em forma de String.
+     *
+     * @return Retorna o HashMap, com todos os seus elementos e em forma de String.
+     * @see Object#toString()
+     */
     static String mapToString() {
         // Template de como a String deve ficar:
         /*
