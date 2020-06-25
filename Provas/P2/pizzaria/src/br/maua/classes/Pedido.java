@@ -1,17 +1,16 @@
 package br.maua.classes;
 
-import br.maua.enumerates.Estado;
+import br.maua.maps.Estados;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Pedido {
 
     private final String id;
-    private String descricao;
-    private Double valor;
-    private String pagamento;
-    private Estado estado = Estado.REALIZADO;
+    private final String descricao;
+    private final Double valor;
+    private final String pagamento;
+    private String estado = Estados.map.get(0);
 
     public Pedido(String descricao, Double valor, String pagamento) {
         this.id = setId();
@@ -27,15 +26,14 @@ public class Pedido {
             idGerado.append(random.nextInt(10));
         }
         return idGerado.toString();
-    };
+    }
 
     public String getId() {
         return this.id;
     }
 
-    public boolean mudarEstado(Estado novoEstado){
+    public void mudarEstado(String novoEstado){
         this.estado = novoEstado;
-        return true;
     }
 
     @Override

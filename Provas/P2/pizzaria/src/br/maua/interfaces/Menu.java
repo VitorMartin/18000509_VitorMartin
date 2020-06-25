@@ -2,6 +2,7 @@ package br.maua.interfaces;
 
 import br.maua.classes.Pedido;
 import br.maua.classes.Usuario;
+import br.maua.maps.Estados;
 import br.maua.maps.Pagamentos;
 
 import java.util.ArrayList;
@@ -36,10 +37,15 @@ public interface Menu {
         System.out.println(Pagamentos.mapToString());
     }
 
+    static void opcoesDeEstado() {
+        System.out.println("Estados possiveis:");
+        System.out.println(Estados.mapToString());
+    }
+
     static void mostrarPedidos(ArrayList<Pedido> pedidos) {
-        String str = "";
+        StringBuilder str = new StringBuilder();
         for (Pedido p : pedidos) {
-            str += p.toString() + "\n";
+            str.append(p.toString()).append("\n");
         }
         System.out.println(str);
     }
@@ -53,5 +59,6 @@ public interface Menu {
             "9 - Sair"
         );
     }
+
 
 }
