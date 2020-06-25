@@ -54,6 +54,7 @@ public class Pedido {
     // SETTERS E GETTERS
     /**
      * Cria o ID do pedido, gerando três algarismos aleatórios.
+     *
      * @return Retorna três algarismos aleatórios em forma de String.
      */
     private String setId(){
@@ -67,6 +68,7 @@ public class Pedido {
 
     /**
      * Getter para o ID do Pedido
+     *
      * @return Retorna o ID de um Pedido instanciado.
      * @see #id
      */
@@ -86,6 +88,7 @@ public class Pedido {
 
     /**
      * Override to método Object.toString().
+     *
      * @return Retorna a instância da classe Pedido em forma de String.
      * @see Pedido
      * @see Object#toString()

@@ -5,11 +5,12 @@ import java.util.Map;
 
 /**
  * HashMap das formas de pagamento possíveis de um pedido.
- *
+ * <p>
  * Por hora, funciona igual um ArrayList, porém está implementado como
  * HashMap, pois ele dá mais flexibilidade, caso queira alterar a chave para qualquer outro objeto.
- *
- * Key   : Integer
+ * <p>
+ * Key : Integer
+ * <p>
  * Value : String
  */
 
@@ -29,8 +30,7 @@ public interface Pagamentos {
     /**
      * Semelhante ao método Object.toString(), que retorna a instância de um Objeto em forma de String.
      *
-     * @return Retorna o HashMap, com todos os seus elementos e em forma de String.
-     * @see Object#toString()
+     * @return Retorna o HashMap, com todos os seus elementos e em forma de String
      */
     static String mapToString() {
         // Template de como a String deve ficar:

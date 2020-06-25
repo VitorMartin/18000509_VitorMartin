@@ -28,6 +28,7 @@ public interface Menu {
 
     /**
      * Menu de saudação ao usuário. Também diz se ele é administrador ou não.
+     *
      * @param usr Instância de Usuario.
      * @see Usuario
      */
@@ -52,7 +53,7 @@ public interface Menu {
     }
 
     /**
-     * Opçoes de pagamento.
+     * Opções de pagamento.
      *
      * @see Pagamentos
      */
@@ -73,6 +74,7 @@ public interface Menu {
 
     /**
      * Mostra a lista de pedidos criados.
+     *
      * @param pedidos ArrayList que guarda todos os pedidos criados.
      */
     static void mostrarPedidos(ArrayList<Pedido> pedidos) {

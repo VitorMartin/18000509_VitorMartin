@@ -48,6 +48,7 @@ public class Usuario implements Seguranca {
     // SETTERS E GETTERS
     /**
      * Getter para o atributo Usuario.nome
+     *
      * @return Retorna o nome do usuário instanciado.
      * @see #nome
      */
@@ -57,6 +58,7 @@ public class Usuario implements Seguranca {
 
     /**
      * Override to método Object.toString().
+     *
      * @return Retorna a instância da classe Usuario em forma de String.
      * @see Usuario
      * @see Object#toString()
@@ -73,7 +75,7 @@ public class Usuario implements Seguranca {
 
     /**
      * Método para autenticar a senha que essa instância do usuário possui.
-     *
+     * <p>
      * Se for igual à senha mestre, o atributo Usuario.isAdmin se torna true, se não for, se torna false.
      *
      * @param senha Senha do usuário.

@@ -1,7 +1,7 @@
 package br.maua.interfaces;
 
 /**
- * Interface responsável por autenticar usuários.
+ * Interface responsável por gerenciar métodos de segurança, como autenticar uma senha de login.
  */
 
 public interface Seguranca {

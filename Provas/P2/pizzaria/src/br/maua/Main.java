@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Classe ponto de entrada da aplicação base.<br>
+ * Classe ponto de entrada da aplicação base.
+ * <p>
  * Ela é responsável por iniciar e executar a aplicação,
  * mostrando os menus para o usuário, coletando sua interação
  * e agindo de acordo.
@@ -30,13 +31,7 @@ public class Main implements Menu {
     public static void main(String[] args) {
 
         // Variaveis
-        /**
-         * Input do usuário.
-         */
         String inp = "";
-        /**
-         * ArrayList que guarda todos os pedidos criados.
-         */
         ArrayList<Pedido> pedidos = new ArrayList<>();
 
         // Fazendo login
@@ -113,6 +108,7 @@ public class Main implements Menu {
 
     /**
      * Função para simplificar a coleta do que o usuário digitar.
+     *
      * @param prompt Texto para mostrar ao usuário, antes de coletar seu input.
      *               Serve para dizer o que o input espera coletar.
      * @return Retorna o que o usuário digitou, em formato de String.
@@ -132,6 +128,7 @@ public class Main implements Menu {
 
     /**
      * Procura o pedido pelo ID e retorna seu índice no ArrayList pedidos
+     *
      * @param pedidos ArrayList com todos os pedidos feitos.
      * @param id ID do pedido a ser procurado
      * @return Retorna o índice no ArrayList pedidos do pedido procurado.
