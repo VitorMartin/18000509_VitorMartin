@@ -8,12 +8,13 @@ public class Menu {
 
 	public static void inicio (){
 		System.out.println(
-				"---------\n" +
+				"-----------\n" +
+				"Categorias:\n" +
 				ANIME + " - Anime" + "\n" +
 				MANGA + " - Manga"	+ "\n" +
 				"\n" +
 				SAIR + " - Sair" +
-				"\n---------"
+				"\n-----------"
 		);
 	}
 
