@@ -1,5 +1,8 @@
 package br.maua.models;
 
+import br.maua.api.Jikan;
+import org.json.JSONObject;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -27,11 +30,23 @@ public class App {
 				case Menu.ANIME:
 					Menu.anime();
 					titulo = sc.nextLine();
+					try {
+						Jikan.request(Jikan.ANIME, titulo);
+					}catch (Exception e){
+						e.printStackTrace();
+						Menu.erroDeBusca();
+					}
 					break;
 
 				case Menu.MANGA:
 					Menu.manga();
 					titulo = sc.nextLine();
+					try {
+						Jikan.request(Jikan.MANGA, titulo);
+					}catch (Exception e){
+						e.printStackTrace();
+						Menu.erroDeBusca();
+					}
 					break;
 
 				case Menu.SAIR:

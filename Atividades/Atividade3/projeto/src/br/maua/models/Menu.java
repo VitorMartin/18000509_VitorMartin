@@ -41,4 +41,8 @@ public class Menu {
 	public static void opcaoInvalida(){
 		System.out.println("Opcao invalida.");
 	}
+
+	public static void erroDeBusca() {
+		System.out.println("Erro de busca. Tente outra combinacao de categoria e titulo.");
+	}
 }
