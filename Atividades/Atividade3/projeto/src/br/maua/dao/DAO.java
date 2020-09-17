@@ -16,7 +16,7 @@ public interface DAO <T> {
 	String NOTA = "nota";
 
 	List<T> getAll();
-	int escrever(T t) throws SQLException;
-	void apagar(T t);
-	void criar(T t);
+	int escreverEntrada(T t) throws SQLException;
+	int apagarEntrada(T t) throws SQLException;
+	T getEntradaPorID(int id);
 }

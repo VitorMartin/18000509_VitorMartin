@@ -53,7 +53,7 @@ public class AnimesDAO implements DAO<Anime> {
 	}
 
 	@Override
-	public int escrever(Anime anime) throws SQLException {
+	public int escreverEntrada(Anime anime) throws SQLException {
 		String comando = String.format(
 				"INSERT INTO %s (%s, %s, %s, %s, %s, %s) VALUES (%d, \"%s\", \"%s\", \"%s\", %d, %s);",
 				dbName,
@@ -63,18 +63,26 @@ public class AnimesDAO implements DAO<Anime> {
 
 		PreparedStatement ps = con.prepareStatement(comando);
 
-		int res = ps.executeUpdate();
-
-		return res;
+		return ps.executeUpdate();
 	}
 
 	@Override
-	public void apagar(Anime anime) {
+	public int apagarEntrada(Anime anime) throws SQLException {
+		String comando = String.format(
+				"DELETE FROM %s WHERE %s = %d;",
+				dbName, ID, anime.getId()
+		);
 
+		PreparedStatement ps = con.prepareStatement(comando);
+
+		return ps.executeUpdate();
 	}
 
 	@Override
-	public void criar(Anime anime) {
-
+	public Anime getEntradaPorID(int id) {
+		for (Anime anime : getAll()){
+			if (id == anime.getId()) return anime;
+		}
+		return null;
 	}
 }

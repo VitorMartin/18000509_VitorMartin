@@ -49,7 +49,7 @@ public class App {
 								jikan.getMatches().getJSONObject(inp).getDouble(Jikan.NOTA)
 						);
 						System.out.println(anime);
-						animesDAO.escrever(anime);
+						animesDAO.escreverEntrada(anime);
 					}
 					catch (InterruptedException | IOException e) { // Exception para "new Jikan()"
 						e.printStackTrace();
