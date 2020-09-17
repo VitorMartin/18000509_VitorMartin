@@ -1,9 +1,6 @@
 package br.maua.models.midia;
 
 public class Manga extends Midia {
-	public static final String CAPITULOS = "chapters";
-	public static final String VOLUMES = "volumes";
-	public static final String TIPO = "type";
 
 	private final int capitulos;
 	private final int volumes;
@@ -18,11 +15,9 @@ public class Manga extends Midia {
 
 	@Override
 	public String toString() {
-		String str = String.format(
+		return String.format(
 				"       ID : %s\n   Titulo : %s\n     Tipo : %s\n     Nota : %s\nCapitulos : %s\n  Volumes : %s\n      URL : %s\n  Sinopse : %s",
 				id, titulo, tipo, nota, capitulos, volumes, url, sinopse
 		);
-
-		return str;
 	}
 }

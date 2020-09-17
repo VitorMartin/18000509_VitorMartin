@@ -10,9 +10,17 @@ import java.net.http.HttpResponse;
 import java.time.Duration;
 
 public class Jikan {
-	private static final String urlBase = "https://api.jikan.moe/v3/search/%s?q=%s";
-	public  static final String ANIME = "anime";
-	public  static final String MANGA = "manga";
+	public static final String BUSCAR_ANIME = "anime";
+	public static final String BUSCAR_MANGA = "manga";
+	public static final String ID = "mal_id";
+	public static final String URL = "url";
+	public static final String TITULO = "title";
+	public static final String SINOPSE = "synopsis";
+	public static final String EPISODIOS = "episodes";
+	public static final String CAPITULOS = "chapters";
+	public static final String VOLUMES = "volumes";
+	public static final String TIPO = "type";
+	public static final String NOTA = "score";
 
 	private final JSONArray matches;
 
@@ -22,6 +30,7 @@ public class Jikan {
 	}
 
 	private JSONObject request(String categoria, String titulo) throws Exception {
+		final String urlBase = "https://api.jikan.moe/v3/search/%s?q=%s";
 		URI uri = URI.create(
 				String.format(
 						urlBase,
@@ -50,8 +59,8 @@ public class Jikan {
 	public String mostrarTitulosEncontrados(){
 		StringBuilder str = new StringBuilder();
 		for (int i = 0; i < matches.length(); i++) {
-			if (i >= 10) break; // Limitando busca aos 10 primeiros resultados
-			str.append(i + "\t->\t" + matches.getJSONObject(i).getString("title") + "\n");
+			if (i >= 10) break; // Limitando busca aos 10 primeiros resultados. O resto da lista ainda existe, porem escondido do usuario.
+			str.append(i).append("\t->\t").append(matches.getJSONObject(i).getString("title")).append("\n");
 		}
 		str.setLength(str.length() - 1);
 

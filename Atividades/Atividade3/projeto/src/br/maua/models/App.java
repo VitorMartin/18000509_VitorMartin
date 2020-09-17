@@ -14,7 +14,7 @@ public class App {
 
 	public void run(){
 		int inp = Menu.INVALIDO;
-		String titulo = "";
+		String titulo;
 		Jikan jikan;
 		Anime anime;
 		Manga manga;
@@ -31,16 +31,16 @@ public class App {
 					Menu.escolhaAnime();
 					titulo = sc.nextLine().toLowerCase();
 					try {
-						jikan = new Jikan(Jikan.ANIME, titulo);
+						jikan = new Jikan(Jikan.BUSCAR_ANIME, titulo);
 						Menu.mostrarTitulosEncontrados(jikan.mostrarTitulosEncontrados());
 						inp = pegarInput();
 						anime = new Anime(
-								jikan.getMatches().getJSONObject(inp).getInt(Anime.ID),
-								jikan.getMatches().getJSONObject(inp).getString(Anime.URL),
-								jikan.getMatches().getJSONObject(inp).getString(Anime.TITULO),
-								jikan.getMatches().getJSONObject(inp).getString(Anime.SINOPSE),
-								jikan.getMatches().getJSONObject(inp).getInt(Anime.EPISODIOS),
-								jikan.getMatches().getJSONObject(inp).getDouble(Anime.NOTA)
+								jikan.getMatches().getJSONObject(inp).getInt(Jikan.ID),
+								jikan.getMatches().getJSONObject(inp).getString(Jikan.URL),
+								jikan.getMatches().getJSONObject(inp).getString(Jikan.TITULO),
+								jikan.getMatches().getJSONObject(inp).getString(Jikan.SINOPSE),
+								jikan.getMatches().getJSONObject(inp).getInt(Jikan.EPISODIOS),
+								jikan.getMatches().getJSONObject(inp).getDouble(Jikan.NOTA)
 						);
 						System.out.println(anime);
 					}
@@ -54,18 +54,18 @@ public class App {
 					Menu.escolhaManga();
 					titulo = sc.nextLine().toLowerCase();
 					try {
-						jikan = new Jikan(Jikan.MANGA, titulo);
+						jikan = new Jikan(Jikan.BUSCAR_MANGA, titulo);
 						Menu.mostrarTitulosEncontrados(jikan.mostrarTitulosEncontrados());
 						inp = pegarInput();
 						manga = new Manga(
-								jikan.getMatches().getJSONObject(inp).getInt(Manga.ID),
-								jikan.getMatches().getJSONObject(inp).getString(Manga.URL),
-								jikan.getMatches().getJSONObject(inp).getString(Manga.TITULO),
-								jikan.getMatches().getJSONObject(inp).getString(Manga.SINOPSE),
-								jikan.getMatches().getJSONObject(inp).getInt(Manga.CAPITULOS),
-								jikan.getMatches().getJSONObject(inp).getInt(Manga.VOLUMES),
-								jikan.getMatches().getJSONObject(inp).getString(Manga.TIPO),
-								jikan.getMatches().getJSONObject(inp).getDouble(Manga.NOTA)
+								jikan.getMatches().getJSONObject(inp).getInt(Jikan.ID),
+								jikan.getMatches().getJSONObject(inp).getString(Jikan.URL),
+								jikan.getMatches().getJSONObject(inp).getString(Jikan.TITULO),
+								jikan.getMatches().getJSONObject(inp).getString(Jikan.SINOPSE),
+								jikan.getMatches().getJSONObject(inp).getInt(Jikan.CAPITULOS),
+								jikan.getMatches().getJSONObject(inp).getInt(Jikan.VOLUMES),
+								jikan.getMatches().getJSONObject(inp).getString(Jikan.TIPO),
+								jikan.getMatches().getJSONObject(inp).getDouble(Jikan.NOTA)
 						);
 						System.out.println(manga);
 					}

@@ -1,11 +1,6 @@
 package br.maua.models.midia;
 
 public class Midia {
-	public static final String ID = "mal_id";
-	public static final String URL = "url";
-	public static final String TITULO = "title";
-	public static final String SINOPSE = "synopsis";
-	public static final String NOTA = "score";
 
 	protected final int id;
 	protected final String url;

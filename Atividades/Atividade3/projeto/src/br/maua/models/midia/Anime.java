@@ -1,7 +1,6 @@
 package br.maua.models.midia;
 
 public class Anime extends Midia {
-	public static final String EPISODIOS = "episodes";
 
 	private final int episodios;
 
@@ -12,11 +11,9 @@ public class Anime extends Midia {
 
 	@Override
 	public String toString() {
-		String str = String.format(
+		return String.format(
 				"       ID : %s\n   Titulo : %s\n     Nota : %s\nEpisodios : %s\n      URL : %s\n  Sinopse : %s",
 				id, titulo, nota, episodios, url, sinopse
 		);
-
-		return str;
 	}
 }
