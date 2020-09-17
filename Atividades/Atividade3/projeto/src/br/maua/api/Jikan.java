@@ -3,6 +3,7 @@ package br.maua.api;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -24,12 +25,12 @@ public class Jikan {
 
 	private final JSONArray matches;
 
-	public Jikan(String categoria, String titulo) throws Exception {
+	public Jikan(String categoria, String titulo) throws IOException, InterruptedException {
 		JSONObject resposta = request(categoria, titulo);
 		this.matches = resposta.getJSONArray("results");
 	}
 
-	private JSONObject request(String categoria, String titulo) throws Exception {
+	private JSONObject request(String categoria, String titulo) throws IOException, InterruptedException {
 		final String urlBase = "https://api.jikan.moe/v3/search/%s?q=%s";
 		URI uri = URI.create(
 				String.format(

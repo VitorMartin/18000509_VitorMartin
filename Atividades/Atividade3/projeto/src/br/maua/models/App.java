@@ -1,10 +1,14 @@
 package br.maua.models;
 
 import br.maua.api.Jikan;
+import br.maua.dao.AnimesDAO;
+import br.maua.dao.MangasDAO;
 import br.maua.models.midia.Anime;
 import br.maua.models.midia.Manga;
 import br.maua.throwables.ForaDoRangeException;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -17,7 +21,9 @@ public class App {
 		String titulo;
 		Jikan jikan;
 		Anime anime;
+		AnimesDAO animesDAO = new AnimesDAO();
 		Manga manga;
+		MangasDAO mangasDAO = new MangasDAO();
 
 		Menu.saudacao();
 
@@ -43,10 +49,15 @@ public class App {
 								jikan.getMatches().getJSONObject(inp).getDouble(Jikan.NOTA)
 						);
 						System.out.println(anime);
+						animesDAO.escrever(anime);
 					}
-					catch (Exception e){
+					catch (InterruptedException | IOException e) { // Exception para "new Jikan()"
 						e.printStackTrace();
-						Menu.erroDeBusca();
+						Menu.caracterIlegal();
+					}
+					catch (SQLException e){
+						e.printStackTrace();
+						Menu.erroDeSQL();
 					}
 					break;
 
@@ -71,7 +82,7 @@ public class App {
 					}
 					catch (Exception e){
 						e.printStackTrace();
-						Menu.erroDeBusca();
+						Menu.caracterIlegal();
 					}
 					break;
 

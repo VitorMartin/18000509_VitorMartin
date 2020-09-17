@@ -15,4 +15,25 @@ public class Midia {
 		this.sinopse = sinopse;
 		this.nota = nota;
 	}
+
+	// Getters e Setters
+	public int getId() {
+		return id;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public String getSinopse() {
+		return sinopse;
+	}
+
+	public double getNota() {
+		return nota;
+	}
 }

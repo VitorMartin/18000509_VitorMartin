@@ -16,4 +16,9 @@ public class Anime extends Midia {
 				id, titulo, nota, episodios, url, sinopse
 		);
 	}
+
+	// Getters e Setters
+	public int getEpisodios() {
+		return episodios;
+	}
 }

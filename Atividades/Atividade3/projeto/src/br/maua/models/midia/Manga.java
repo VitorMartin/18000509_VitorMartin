@@ -20,4 +20,17 @@ public class Manga extends Midia {
 				id, titulo, tipo, nota, capitulos, volumes, url, sinopse
 		);
 	}
+
+	//Getters e Setters
+	public int getCapitulos() {
+		return capitulos;
+	}
+
+	public int getVolumes() {
+		return volumes;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
 }

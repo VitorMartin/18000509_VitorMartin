@@ -51,7 +51,11 @@ public class Menu {
 		System.out.println("Opcao invalida.");
 	}
 
-	public static void erroDeBusca() {
-		System.out.println("Erro de busca. Tente outra combinacao de categoria e titulo.");
+	public static void caracterIlegal() {
+		System.out.println("Caractere ilegal utilizado na busca. Evite caracteres especiais.");
+	}
+
+	public static void erroDeSQL() {
+		System.out.println("Erro de SQL.");
 	}
 }
