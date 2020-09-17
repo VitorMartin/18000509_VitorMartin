@@ -2,17 +2,24 @@ package br.maua.models;
 
 public class Menu {
 	public static final int ANIME = 1;
+
 	public static final int MANGA = 2;
+
 	public static final int EXIBIR = 3;
+
 	public static final int USAR_ANIME = 1;
 	public static final int USAR_MANGA = 2;
+
 	public static final int PESQUISAR = 4;
 	public static final int PESQUISAR_ID = 1;
 	public static final int PESQUISAR_TITULO = 2;
+
 	public static final int APAGAR = 5;
 	public static final int SIM = 1;
 	public static final int NAO = 2;
+
 	public static final int SAIR = 9;
+
 	public static final int INVALIDO = -1;
 
 	// ========== Opcoes ========== \\

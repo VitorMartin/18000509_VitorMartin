@@ -8,15 +8,18 @@ import java.util.List;
 public interface DAO <T> {
 
 	String DBFileName = "res/otakuDB.db";
+
 	String ID = "id";
 	String URL = "url";
 	String TITULO = "titulo";
 	String SINOPSE = "sinopse";
+	String NOTA = "nota";
+
 	String EPISODIOS = "episodios";
+
 	String CAPITULOS = "capitulos";
 	String VOLUMES = "volumes";
 	String TIPO = "tipo";
-	String NOTA = "nota";
 
 	List<T> getAll();
 	void escreverEntrada(T t) throws SQLException;

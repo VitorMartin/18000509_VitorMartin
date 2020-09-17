@@ -80,7 +80,7 @@ public class AnimesDAO implements DAO<Anime> {
 	}
 
 	@Override
-	public Anime getEntradaPorID(int id) throws EntradaNaoEncontradaException{
+	public Anime getEntradaPorID(int id) throws EntradaNaoEncontradaException {
 		for (Anime anime : getAll()){
 			if (id == anime.getId()) return anime;
 		}

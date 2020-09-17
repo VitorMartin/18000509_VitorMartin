@@ -23,9 +23,12 @@ public class App {
 		int escolhaPesquisa;
 		int idProcurado = 0;
 		String tituloProcurado = "";
+
 		Jikan jikan;
+
 		Anime anime = null;
 		AnimesDAO animesDAO = new AnimesDAO();
+
 		Manga manga = null;
 		MangasDAO mangasDAO = new MangasDAO();
 
@@ -228,7 +231,7 @@ public class App {
 		}
 	}
 
-	private int pegarInputPositivo(){
+	private int pegarInputPositivo(){ // input > 0
 		int retorno = Menu.INVALIDO;
 
 		while ( retorno <= 0 ) {
@@ -248,7 +251,7 @@ public class App {
 		return retorno;
 	}
 
-	private int pegarInputEntre0e9(){
+	private int pegarInputEntre0e9(){ // 0 <= input <= 9
 		int retorno = Menu.INVALIDO;
 
 		while ( ! entre0e9(retorno) ) {
@@ -268,7 +271,7 @@ public class App {
 		return retorno;
 	}
 
-	private int pegarInputEntre1e2(){
+	private int pegarInputEntre1e2(){ // input = 1 ou 2
 		int retorno = Menu.INVALIDO;
 
 		while ( ! entre1e2(retorno) ) {
@@ -288,11 +291,11 @@ public class App {
 		return retorno;
 	}
 
-	private boolean entre0e9(int x){
+	private boolean entre0e9(int x){ // 0 <= input <= 9
 		return x >= 0 && x <= 9;
 	}
 
-	private boolean entre1e2(int x){
+	private boolean entre1e2(int x){ // input = 1 ou 2
 		return x >= 1 && x <= 2;
 	}
 }

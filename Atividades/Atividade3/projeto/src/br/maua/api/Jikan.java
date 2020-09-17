@@ -13,15 +13,18 @@ import java.time.Duration;
 public class Jikan {
 	public static final String BUSCAR_ANIME = "anime";
 	public static final String BUSCAR_MANGA = "manga";
+
 	public static final String ID = "mal_id";
 	public static final String URL = "url";
 	public static final String TITULO = "title";
 	public static final String SINOPSE = "synopsis";
+	public static final String NOTA = "score";
+
 	public static final String EPISODIOS = "episodes";
+
 	public static final String CAPITULOS = "chapters";
 	public static final String VOLUMES = "volumes";
 	public static final String TIPO = "type";
-	public static final String NOTA = "score";
 
 	private final JSONArray matches;
 
