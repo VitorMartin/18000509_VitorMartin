@@ -1,6 +1,8 @@
 package br.maua.models;
 
 import br.maua.api.Jikan;
+import br.maua.models.midia.Anime;
+import br.maua.models.midia.Manga;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -12,6 +14,8 @@ public class App {
 		int inp = Menu.INVALIDO;
 		String titulo = "";
 		Jikan jikan;
+		Anime anime;
+		Manga manga;
 
 		Menu.saudacao();
 
@@ -28,6 +32,15 @@ public class App {
 						jikan = new Jikan(Jikan.ANIME, titulo);
 						Menu.mostrarTitulosEncontrados(jikan.mostrarTitulosEncontrados());
 						inp = pegarInput();
+						anime = new Anime(
+								jikan.getMatches().getJSONObject(inp).getInt(Anime.ID),
+								jikan.getMatches().getJSONObject(inp).getString(Anime.URL),
+								jikan.getMatches().getJSONObject(inp).getString(Anime.TITULO),
+								jikan.getMatches().getJSONObject(inp).getString(Anime.SINOPSE),
+								jikan.getMatches().getJSONObject(inp).getInt(Anime.EPISODIOS),
+								jikan.getMatches().getJSONObject(inp).getDouble(Anime.NOTA)
+						);
+						System.out.println(anime);
 					}
 					catch (Exception e){
 						e.printStackTrace();
@@ -42,6 +55,17 @@ public class App {
 						jikan = new Jikan(Jikan.MANGA, titulo);
 						Menu.mostrarTitulosEncontrados(jikan.mostrarTitulosEncontrados());
 						inp = pegarInput();
+						manga = new Manga(
+								jikan.getMatches().getJSONObject(inp).getInt(Manga.ID),
+								jikan.getMatches().getJSONObject(inp).getString(Manga.URL),
+								jikan.getMatches().getJSONObject(inp).getString(Manga.TITULO),
+								jikan.getMatches().getJSONObject(inp).getString(Manga.SINOPSE),
+								jikan.getMatches().getJSONObject(inp).getInt(Manga.CAPITULOS),
+								jikan.getMatches().getJSONObject(inp).getInt(Manga.VOLUMES),
+								jikan.getMatches().getJSONObject(inp).getString(Manga.TIPO),
+								jikan.getMatches().getJSONObject(inp).getDouble(Manga.NOTA)
+						);
+						System.out.println(manga);
 					}
 					catch (Exception e){
 						e.printStackTrace();
