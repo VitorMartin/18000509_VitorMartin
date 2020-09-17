@@ -19,6 +19,9 @@ public class App {
 
 	public void run(){
 		int inpMenu = Menu.INVALIDO;
+		int escolhaDB;
+		int escolhaPesquisa;
+		int idProcurado = 0;
 		String tituloProcurado = "";
 		Jikan jikan;
 		Anime anime = null;
@@ -119,33 +122,98 @@ public class App {
 					}
 					break;
 
-				case 6: // ver DB animes
-					animesDAO.getAll().forEach(an -> System.out.println(an + "\n----------"));
+				case Menu.EXIBIR:
+					Menu.escolherDB();
+					inpMenu = pegarInputEntre1e2();
+					System.out.println(inpMenu == Menu.USAR_ANIME ? animesDAO : mangasDAO);
 					break;
 
-				case 7: // pesquisar na DB animes
-					System.out.println("id : ");
-					int id = sc.nextInt();
-					sc.nextLine();
-					for (Anime an : animesDAO.getAll()){
-						if (id == an.getId()) {
-							System.out.println(an);
-							break;
+				case Menu.PESQUISAR:
+					Menu.escolherDB();
+					escolhaDB = pegarInputEntre1e2(); // Anime ou Manga
+
+					Menu.escolherPesquisa();
+					escolhaPesquisa = pegarInputEntre1e2(); // ID ou Titulo
+
+					if (escolhaPesquisa == Menu.PESQUISAR_ID) {
+						Menu.digiteId();
+						idProcurado = pegarInputPositivo();
+					}
+					else {
+						Menu.digiteTitulo();
+						tituloProcurado = sc.nextLine().toLowerCase();
+					}
+
+					try {
+						if (escolhaDB == Menu.USAR_ANIME) {
+							if (escolhaPesquisa == Menu.PESQUISAR_ID) {
+								System.out.println(animesDAO.getEntradaPorID(idProcurado));
+							} else {
+								System.out.println(animesDAO.getEntradaPorTitulo(tituloProcurado));
+							}
+						} else {
+							if (escolhaPesquisa == Menu.PESQUISAR_ID) {
+								System.out.println(mangasDAO.getEntradaPorID(idProcurado));
+							} else {
+								System.out.println(mangasDAO.getEntradaPorTitulo(tituloProcurado));
+							}
 						}
 					}
+					catch (EntradaNaoEncontradaException ignored) {
+						Menu.entradaNaoEncontrada();
+					}
+
 					break;
 
-				case 8: // apagarEntrada entradas na DB animes
-					inp = sc.nextInt();
-					sc.nextLine();
+				case Menu.APAGAR:
+					Menu.escolherDB();
+					escolhaDB = pegarInputEntre1e2();
+
+					Menu.escolherPesquisa();
+					escolhaPesquisa = pegarInputEntre1e2();
+
+					if (escolhaPesquisa == Menu.PESQUISAR_ID) {
+						Menu.digiteId();
+						idProcurado = pegarInputPositivo();
+					}
+					else {
+						Menu.digiteTitulo();
+						tituloProcurado = sc.nextLine().toLowerCase();
+					}
+
 					try {
-						animesDAO.apagarEntrada(animesDAO.getEntradaPorID(inp));
+						if (escolhaDB == Menu.USAR_ANIME) {
+							if (escolhaPesquisa == Menu.PESQUISAR_ID) {
+								anime = animesDAO.getEntradaPorID(idProcurado);
+							}
+							else {
+								anime = animesDAO.getEntradaPorTitulo(tituloProcurado);
+							}
+
+							System.out.println(anime + "\n-----------");
+							Menu.confirmarApagar();
+							inpMenu = pegarInputEntre1e2();
+							if (inpMenu == Menu.SIM) animesDAO.apagarEntrada(anime);
+						}
+						else {
+							if (escolhaPesquisa == Menu.PESQUISAR_ID) {
+								manga = mangasDAO.getEntradaPorID(idProcurado);
+							}
+							else {
+								manga = mangasDAO.getEntradaPorTitulo(tituloProcurado);
+							}
+
+							System.out.println(manga + "\n-----------");
+							Menu.confirmarApagar();
+							inpMenu = pegarInputEntre1e2();
+							if (inpMenu == Menu.SIM) mangasDAO.apagarEntrada(manga);
+						}
 					}
-					catch (SQLException throwables) {
-						throwables.printStackTrace();
+					catch (EntradaNaoEncontradaException ignored) {
+						Menu.entradaNaoEncontrada();
 					}
-					catch (NullPointerException ignored){
-						System.out.println("id nao encontrado");
+					catch (SQLException ignored2) {
+						Menu.falhaAoApagar();
 					}
 					break;
 
