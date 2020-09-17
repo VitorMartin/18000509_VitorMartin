@@ -29,6 +29,10 @@ public class Midia {
 		return titulo;
 	}
 
+	public String getTituloLower() {
+		return titulo.toLowerCase();
+	}
+
 	public String getSinopse() {
 		return sinopse;
 	}

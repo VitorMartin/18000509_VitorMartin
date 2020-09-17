@@ -54,8 +54,4 @@ public class Menu {
 	public static void caracterIlegal() {
 		System.out.println("Caractere ilegal utilizado na busca. Evite caracteres especiais.");
 	}
-
-	public static void erroDeSQL() {
-		System.out.println("Erro de SQL.");
-	}
 }

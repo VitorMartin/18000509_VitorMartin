@@ -18,8 +18,8 @@ public interface DAO <T> {
 	String NOTA = "nota";
 
 	List<T> getAll();
-	T escreverEntrada(T t) throws SQLException;
-	int apagarEntrada(T t) throws SQLException;
+	void escreverEntrada(T t) throws SQLException;
+	void apagarEntrada(T t) throws SQLException;
 	T getEntradaPorID(int id);
 	T getEntradaPorTitulo(String titulo) throws EntradaNaoEncontradaException;
 }
