@@ -82,11 +82,11 @@ public class MangasDAO implements DAO<Manga> {
 	}
 
 	@Override
-	public Manga getEntradaPorID(int id) {
+	public Manga getEntradaPorID(int id) throws EntradaNaoEncontradaException {
 		for (Manga manga : getAll()){
 			if (id == manga.getId()) return manga;
 		}
-		return null;
+		throw new EntradaNaoEncontradaException();
 	}
 
 	@Override
@@ -94,7 +94,6 @@ public class MangasDAO implements DAO<Manga> {
 		for (Manga manga : getAll()){
 			if (titulo.equals(manga.getTituloLower())) return manga;
 		}
-
 		throw new EntradaNaoEncontradaException();
 	}
 

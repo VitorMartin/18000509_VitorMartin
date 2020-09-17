@@ -21,6 +21,6 @@ public interface DAO <T> {
 	List<T> getAll();
 	void escreverEntrada(T t) throws SQLException;
 	void apagarEntrada(T t) throws SQLException;
-	T getEntradaPorID(int id);
+	T getEntradaPorID(int id) throws EntradaNaoEncontradaException;
 	T getEntradaPorTitulo(String titulo) throws EntradaNaoEncontradaException;
 }
