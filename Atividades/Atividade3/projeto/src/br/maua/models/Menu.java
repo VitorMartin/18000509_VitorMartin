@@ -26,8 +26,12 @@ public class Menu {
 		System.out.println("〜".repeat(29) + "\n" + "Obrigado por utilizar o OtakuDB, volte sempre!\nArigato go sai masu! (*＾▽＾)／" + "\n" + "〜".repeat(29));
 	}
 
+	public static void naoENumero(){
+		System.out.println("O valor digitado nao e um numero.");
+	}
+
 	public static void foraDoRange(){
-		System.out.println("O valor escolhido esta fora do range entre 0 e 9");
+		System.out.println("O numero digitado esta fora do range entre 0 e 9");
 	}
 
 	public static void escolhaAnime(){

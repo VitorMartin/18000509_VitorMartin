@@ -3,11 +3,13 @@ package br.maua.models;
 import br.maua.api.Jikan;
 import br.maua.models.midia.Anime;
 import br.maua.models.midia.Manga;
+import br.maua.throwables.ForaDoRangeException;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class App {
+
 	private final Scanner sc = new Scanner(System.in);
 
 	public void run(){
@@ -89,16 +91,24 @@ public class App {
 
 		int retorno = Menu.INVALIDO;
 
-		while (retorno < 0 || retorno > 9) {
+		while ( ! entre0e9(retorno) ) {
 			try {
 				retorno = sc.nextInt();
-			} catch (InputMismatchException ignored) {
+				if ( ! entre0e9(retorno)) throw new ForaDoRangeException();
+			}
+			catch (InputMismatchException ignored) {
+				Menu.naoENumero();
+			}
+			catch (ForaDoRangeException ignored){
 				Menu.foraDoRange();
 			}
-
 			sc.nextLine(); // consumindo o "\n" que o sc.nextInt() nao consumiu
 		}
 
 		return retorno;
+	}
+
+	private boolean entre0e9(int x){
+		return x >= 0 && x <= 9;
 	}
 }
