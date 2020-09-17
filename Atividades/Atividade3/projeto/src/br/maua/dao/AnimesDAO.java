@@ -95,4 +95,13 @@ public class AnimesDAO implements DAO<Anime> {
 
 		throw new EntradaNaoEncontradaException();
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder str = new StringBuilder();
+
+		getAll().forEach(an -> str.append(an).append("\n----------|----------\n"));
+
+		return str.toString();
+	}
 }

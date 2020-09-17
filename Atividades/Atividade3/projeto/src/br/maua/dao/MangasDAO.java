@@ -97,4 +97,13 @@ public class MangasDAO implements DAO<Manga> {
 
 		throw new EntradaNaoEncontradaException();
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder str = new StringBuilder();
+
+		getAll().forEach(mg -> str.append(mg).append("\n----------|----------\n"));
+
+		return str.toString();
+	}
 }
