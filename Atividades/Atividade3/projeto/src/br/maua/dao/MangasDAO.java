@@ -1,6 +1,5 @@
 package br.maua.dao;
 
-import br.maua.models.midia.Anime;
 import br.maua.models.midia.Manga;
 import br.maua.throwables.EntradaNaoEncontradaException;
 
@@ -12,6 +11,15 @@ public class MangasDAO implements DAO<Manga> {
 	private final String dbName = "mangas";
 
 	private Connection con;
+
+	public MangasDAO() {
+		String dbConStr = "jdbc:sqlite:" + DBFileName;
+		try {
+			con = DriverManager.getConnection(dbConStr);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public List<Manga> getAll() {

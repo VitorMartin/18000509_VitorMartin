@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface DAO <T> {
 
+	String DBFileName = "res/otakuDB.db";
 	String ID = "id";
 	String URL = "url";
 	String TITULO = "titulo";

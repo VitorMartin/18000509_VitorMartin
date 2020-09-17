@@ -13,7 +13,7 @@ public class AnimesDAO implements DAO<Anime> {
 	private Connection con;
 
 	public AnimesDAO() {
-		String dbConStr = "jdbc:sqlite:res/otakuDB.db";
+		String dbConStr = "jdbc:sqlite:" + DBFileName;
 		try {
 			con = DriverManager.getConnection(dbConStr);
 		} catch (SQLException e) {
