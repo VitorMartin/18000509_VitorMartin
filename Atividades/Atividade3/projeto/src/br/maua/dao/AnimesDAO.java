@@ -1,6 +1,7 @@
 package br.maua.dao;
 
 import br.maua.models.midia.Anime;
+import br.maua.throwables.EntradaNaoEncontradaException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -53,7 +54,7 @@ public class AnimesDAO implements DAO<Anime> {
 	}
 
 	@Override
-	public int escreverEntrada(Anime anime) throws SQLException {
+	public Anime escreverEntrada(Anime anime) throws SQLException {
 		String comando = String.format(
 				"INSERT INTO %s (%s, %s, %s, %s, %s, %s) VALUES (%d, \"%s\", \"%s\", \"%s\", %d, %s);",
 				dbName,
@@ -63,11 +64,13 @@ public class AnimesDAO implements DAO<Anime> {
 
 		PreparedStatement ps = con.prepareStatement(comando);
 
-		return ps.executeUpdate();
+		ps.executeUpdate();
+
+		return anime;
 	}
 
 	@Override
-	public int apagarEntrada(Anime anime) throws SQLException {
+	public int apagarEntrada(Anime anime) throws SQLException, NullPointerException {
 		String comando = String.format(
 				"DELETE FROM %s WHERE %s = %d;",
 				dbName, ID, anime.getId()
@@ -84,5 +87,14 @@ public class AnimesDAO implements DAO<Anime> {
 			if (id == anime.getId()) return anime;
 		}
 		return null;
+	}
+
+	@Override
+	public Anime getEntradaPorTitulo(String titulo) throws EntradaNaoEncontradaException {
+		for (Anime anime : getAll()){
+			if (titulo.equals(anime.getTitulo().toLowerCase())) return anime;
+		}
+
+		throw new EntradaNaoEncontradaException();
 	}
 }

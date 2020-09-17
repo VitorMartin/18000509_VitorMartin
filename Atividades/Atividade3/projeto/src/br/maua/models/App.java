@@ -5,6 +5,7 @@ import br.maua.dao.AnimesDAO;
 import br.maua.dao.MangasDAO;
 import br.maua.models.midia.Anime;
 import br.maua.models.midia.Manga;
+import br.maua.throwables.EntradaNaoEncontradaException;
 import br.maua.throwables.ForaDoRangeException;
 
 import java.io.IOException;
@@ -33,31 +34,44 @@ public class App {
 			inp = pegarInput();
 
 			switch (inp){
+
 				case Menu.ANIME:
+
 					Menu.escolhaAnime();
+
 					titulo = sc.nextLine().toLowerCase();
+
 					try {
-						jikan = new Jikan(Jikan.BUSCAR_ANIME, titulo);
-						Menu.mostrarTitulosEncontrados(jikan.mostrarTitulosEncontrados());
-						inp = pegarInput();
-						anime = new Anime(
-								jikan.getMatches().getJSONObject(inp).getInt(Jikan.ID),
-								jikan.getMatches().getJSONObject(inp).getString(Jikan.URL),
-								jikan.getMatches().getJSONObject(inp).getString(Jikan.TITULO),
-								jikan.getMatches().getJSONObject(inp).getString(Jikan.SINOPSE),
-								jikan.getMatches().getJSONObject(inp).getInt(Jikan.EPISODIOS),
-								jikan.getMatches().getJSONObject(inp).getDouble(Jikan.NOTA)
-						);
-						System.out.println(anime);
-						animesDAO.escreverEntrada(anime);
+						System.out.println(animesDAO.getEntradaPorTitulo(titulo)); // Procurar titulo na DB
 					}
-					catch (InterruptedException | IOException e) { // Exception para "new Jikan()"
-						e.printStackTrace();
-						Menu.caracterIlegal();
-					}
-					catch (SQLException e){
-						e.printStackTrace();
-						Menu.erroDeSQL();
+
+					catch (EntradaNaoEncontradaException ignored) { // Se nao encontrar na DB, pesquisar na API
+						try {
+							jikan = new Jikan(Jikan.BUSCAR_ANIME, titulo);
+
+							Menu.mostrarTitulosEncontrados(jikan.mostrarTitulosEncontrados());
+
+							inp = pegarInput();
+
+							anime = new Anime(
+									jikan.getMatches().getJSONObject(inp).getInt(Jikan.ID),
+									jikan.getMatches().getJSONObject(inp).getString(Jikan.URL),
+									jikan.getMatches().getJSONObject(inp).getString(Jikan.TITULO),
+									jikan.getMatches().getJSONObject(inp).getString(Jikan.SINOPSE),
+									jikan.getMatches().getJSONObject(inp).getInt(Jikan.EPISODIOS),
+									jikan.getMatches().getJSONObject(inp).getDouble(Jikan.NOTA)
+							);
+
+							System.out.println(animesDAO.escreverEntrada(anime));
+						}
+
+						catch (InterruptedException | IOException e) { // Exception para "new Jikan()"
+							e.printStackTrace();
+							Menu.caracterIlegal();
+						}
+
+						catch (SQLException ignored2) { // Exception para animesDAO.escreverEntrada()
+						}
 					}
 					break;
 

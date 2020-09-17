@@ -1,5 +1,7 @@
 package br.maua.dao;
 
+import br.maua.throwables.EntradaNaoEncontradaException;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -16,7 +18,8 @@ public interface DAO <T> {
 	String NOTA = "nota";
 
 	List<T> getAll();
-	int escreverEntrada(T t) throws SQLException;
+	T escreverEntrada(T t) throws SQLException;
 	int apagarEntrada(T t) throws SQLException;
 	T getEntradaPorID(int id);
+	T getEntradaPorTitulo(String titulo) throws EntradaNaoEncontradaException;
 }
