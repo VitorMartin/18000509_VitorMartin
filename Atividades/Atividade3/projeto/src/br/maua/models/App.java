@@ -7,8 +7,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class App {
+	private final Scanner sc = new Scanner(System.in);
+
 	public void run(){
-		Scanner sc = new Scanner(System.in);
 		int inp = Menu.INVALIDO;
 		String titulo = "";
 		JSONObject resp;
@@ -18,13 +19,7 @@ public class App {
 		while (inp != Menu.SAIR){
 			Menu.inicio();
 
-			try {
-				inp = sc.nextInt();
-			}catch (InputMismatchException e){
-				inp = Menu.INVALIDO;
-			}
-
-			sc.nextLine(); // consumindo o "\n" que o sc.nextInt() nao consumiu
+			inp = pegarInput();
 
 			switch (inp){
 				case Menu.ANIME:
@@ -53,14 +48,28 @@ public class App {
 					Menu.despedida();
 					break;
 
-				case Menu.INVALIDO:
-					Menu.numeroDesconhecido();
-					break;
-
 				default:
 					Menu.opcaoInvalida();
 					break;
 			}
 		}
+	}
+
+	private int pegarInput(){
+		// Aceitar apenas valores entre 0 e 9
+
+		int retorno = Menu.INVALIDO;
+
+		while (retorno < 0 || retorno > 9) {
+			try {
+				retorno = sc.nextInt();
+			} catch (InputMismatchException ignored) {
+				Menu.foraDoRange();
+			}
+
+			sc.nextLine(); // consumindo o "\n" que o sc.nextInt() nao consumiu
+		}
+
+		return retorno;
 	}
 }
