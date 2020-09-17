@@ -1,5 +1,6 @@
 package br.maua.api;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.net.URI;
@@ -13,7 +14,14 @@ public class Jikan {
 	public  static final String ANIME = "anime";
 	public  static final String MANGA = "manga";
 
-	public static JSONObject request(String categoria, String titulo) throws Exception {
+	private final JSONArray matches;
+
+	public Jikan(String categoria, String titulo) throws Exception {
+		JSONObject resposta = request(categoria, titulo);
+		this.matches = resposta.getJSONArray("results");
+	}
+
+	private JSONObject request(String categoria, String titulo) throws Exception {
 		URI uri = URI.create(
 				String.format(
 						urlBase,
@@ -36,10 +44,22 @@ public class Jikan {
 
 		HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-		System.out.println("   URI : " + uri);
-		System.out.println("Status : " + response.statusCode());
-		System.out.println("  Body : " + response.body());
-
 		return new JSONObject(response.body());
+	}
+
+	public String mostrarTitulosEncontrados(){
+		StringBuilder str = new StringBuilder();
+		for (int i = 0; i < matches.length(); i++) {
+			if (i >= 10) break; // Limitando busca aos 10 primeiros resultados
+			str.append(i + "\t->\t" + matches.getJSONObject(i).getString("title") + "\n");
+		}
+		str.setLength(str.length() - 1);
+
+		return str.toString();
+	}
+
+	// Getters e Setters
+	public JSONArray getMatches() {
+		return matches;
 	}
 }

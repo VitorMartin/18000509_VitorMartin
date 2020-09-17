@@ -30,12 +30,17 @@ public class Menu {
 		System.out.println("O valor escolhido esta fora do range entre 0 e 9");
 	}
 
-	public static void anime(){
+	public static void escolhaAnime(){
 		System.out.println("Digite o titulo do seu Anime : ");
 	}
 
-	public static void manga(){
-		System.out.println("Digite o titulo do se Manga : ");
+	public static void escolhaManga(){
+		System.out.println("Digite o titulo do seu Manga : ");
+	}
+
+	public static void mostrarTitulosEncontrados(String titulos){
+		System.out.println("Digite o numero do titulo desejado:");
+		System.out.println(titulos);
 	}
 
 	public static void opcaoInvalida(){

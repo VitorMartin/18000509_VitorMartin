@@ -1,7 +1,6 @@
 package br.maua.models;
 
 import br.maua.api.Jikan;
-import org.json.JSONObject;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -12,7 +11,7 @@ public class App {
 	public void run(){
 		int inp = Menu.INVALIDO;
 		String titulo = "";
-		JSONObject resp;
+		Jikan jikan;
 
 		Menu.saudacao();
 
@@ -23,22 +22,28 @@ public class App {
 
 			switch (inp){
 				case Menu.ANIME:
-					Menu.anime();
-					titulo = sc.nextLine();
+					Menu.escolhaAnime();
+					titulo = sc.nextLine().toLowerCase();
 					try {
-						Jikan.request(Jikan.ANIME, titulo);
-					}catch (Exception e){
+						jikan = new Jikan(Jikan.ANIME, titulo);
+						Menu.mostrarTitulosEncontrados(jikan.mostrarTitulosEncontrados());
+						inp = pegarInput();
+					}
+					catch (Exception e){
 						e.printStackTrace();
 						Menu.erroDeBusca();
 					}
 					break;
 
 				case Menu.MANGA:
-					Menu.manga();
-					titulo = sc.nextLine();
+					Menu.escolhaManga();
+					titulo = sc.nextLine().toLowerCase();
 					try {
-						Jikan.request(Jikan.MANGA, titulo);
-					}catch (Exception e){
+						jikan = new Jikan(Jikan.MANGA, titulo);
+						Menu.mostrarTitulosEncontrados(jikan.mostrarTitulosEncontrados());
+						inp = pegarInput();
+					}
+					catch (Exception e){
 						e.printStackTrace();
 						Menu.erroDeBusca();
 					}
