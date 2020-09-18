@@ -59,7 +59,7 @@ public class AnimesDAO implements DAO<Anime> {
 				"INSERT INTO %s (%s, %s, %s, %s, %s, %s) VALUES (%d, \"%s\", \"%s\", \"%s\", %d, %s);",
 				dbName,
 				ID, URL, TITULO, SINOPSE, EPISODIOS, NOTA,
-				anime.getId(), anime.getUrl(), anime.getTitulo(), anime.getSinopse(), anime.getEpisodios(), anime.getNota()
+				anime.getId(), anime.getUrl(), anime.getTitulo().replace("\"", "'"), anime.getSinopse().replace("\"", "'"), anime.getEpisodios(), anime.getNota()
 		);
 
 		PreparedStatement ps = con.prepareStatement(comando);

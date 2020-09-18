@@ -61,7 +61,7 @@ public class MangasDAO implements DAO<Manga> {
 				"INSERT INTO %s (%s, %s, %s, %s, %s, %s, %s, %s) VALUES (%d, \"%s\", \"%s\", \"%s\", %d, %d, \"%s\", %s);",
 				dbName,
 				ID, URL, TITULO, SINOPSE, CAPITULOS, VOLUMES, TIPO, NOTA,
-				manga.getId(), manga.getUrl(), manga.getTitulo(), manga.getSinopse(), manga.getCapitulos(), manga.getVolumes(), manga.getTipo(), manga.getNota()
+				manga.getId(), manga.getUrl(), manga.getTitulo().replace("\"", "'"), manga.getSinopse().replace("\"", "'"), manga.getCapitulos(), manga.getVolumes(), manga.getTipo(), manga.getNota()
 		);
 
 		PreparedStatement ps = con.prepareStatement(comando);
