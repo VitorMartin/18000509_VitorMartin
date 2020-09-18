@@ -60,8 +60,8 @@ public class App {
 									jikan.getMatches().getJSONObject(inp.getMenu()).getDouble(Jikan.NOTA)
 							);
 
-							animesDAO.escreverEntrada(anime);
 							System.out.println(anime);
+							animesDAO.escreverEntrada(anime);
 						}
 
 						catch (InterruptedException | IOException e) { // Exception para API
@@ -103,8 +103,8 @@ public class App {
 									jikan.getMatches().getJSONObject(inp.getMenu()).getDouble(Jikan.NOTA)
 							);
 
-							mangasDAO.escreverEntrada(manga);
 							System.out.println(manga);
+							mangasDAO.escreverEntrada(manga);
 						}
 
 						catch (InterruptedException | IOException e) { // Exception para API
