@@ -3,69 +3,61 @@ package br.maua.models;
 import br.maua.api.Jikan;
 import br.maua.dao.AnimesDAO;
 import br.maua.dao.MangasDAO;
+import br.maua.models.cli.Input;
+import br.maua.models.cli.Menu;
 import br.maua.models.midia.Anime;
 import br.maua.models.midia.Manga;
 import br.maua.throwables.EntradaNaoEncontradaException;
-import br.maua.throwables.ForaDoRangeException;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class App {
-
-	private final Scanner sc = new Scanner(System.in);
-
 	public void run(){
-		int inpMenu = Menu.INVALIDO;
-		int escolhaDB;
-		int escolhaPesquisa;
-		int idProcurado = 0;
-		String tituloProcurado = "";
+		Input inp = new Input();
 
 		Jikan jikan;
 
-		Anime anime = null;
+		Anime anime;
 		AnimesDAO animesDAO = new AnimesDAO();
 
-		Manga manga = null;
+		Manga manga;
 		MangasDAO mangasDAO = new MangasDAO();
 
 		Menu.saudacao();
 
-		while (inpMenu != Menu.SAIR){
+		while (inp.getMenu() != Menu.SAIR){
 			Menu.inicio();
 
-			inpMenu = pegarInputEntre0e9();
+			inp.setMenu();
 
-			switch (inpMenu){
+			switch (inp.getMenu()){
 
 				case Menu.ANIME:
 
 					Menu.escolhaAnime();
 
-					tituloProcurado = sc.nextLine().toLowerCase();
+					inp.setTitulo();
 
 					try {
-						System.out.println(animesDAO.getEntradaPorTitulo(tituloProcurado)); // Procurar titulo na DB
+						System.out.println(animesDAO.getEntradaPorTitulo(inp.getTitulo())); // Procurar titulo na DB
 					}
 
 					catch (EntradaNaoEncontradaException ignored) { // Se nao encontrar na DB, pesquisar na API
 						try {
-							jikan = new Jikan(Jikan.BUSCAR_ANIME, tituloProcurado);
+							jikan = new Jikan(Jikan.BUSCAR_ANIME, inp.getTitulo());
 
 							Menu.mostrarTitulosEncontrados(jikan.mostrarTitulosEncontrados());
 
-							inpMenu = pegarInputEntre0e9();
+							inp.setMenu();
 
 							anime = new Anime(
-									jikan.getMatches().getJSONObject(inpMenu).getInt(Jikan.ID),
-									jikan.getMatches().getJSONObject(inpMenu).getString(Jikan.URL),
-									jikan.getMatches().getJSONObject(inpMenu).getString(Jikan.TITULO),
-									jikan.getMatches().getJSONObject(inpMenu).getString(Jikan.SINOPSE),
-									jikan.getMatches().getJSONObject(inpMenu).getInt(Jikan.EPISODIOS),
-									jikan.getMatches().getJSONObject(inpMenu).getDouble(Jikan.NOTA)
+									jikan.getMatches().getJSONObject(inp.getMenu()).getInt(Jikan.ID),
+									jikan.getMatches().getJSONObject(inp.getMenu()).getString(Jikan.URL),
+									jikan.getMatches().getJSONObject(inp.getMenu()).getString(Jikan.TITULO),
+									jikan.getMatches().getJSONObject(inp.getMenu()).getString(Jikan.SINOPSE),
+									jikan.getMatches().getJSONObject(inp.getMenu()).getInt(Jikan.EPISODIOS),
+									jikan.getMatches().getJSONObject(inp.getMenu()).getDouble(Jikan.NOTA)
 							);
 
 							animesDAO.escreverEntrada(anime);
@@ -86,29 +78,29 @@ public class App {
 
 					Menu.escolhaManga();
 
-					tituloProcurado = sc.nextLine().toLowerCase();
+					inp.setTitulo();
 
 					try {
-						System.out.println(mangasDAO.getEntradaPorTitulo(tituloProcurado)); // Procurar titulo na DB
+						System.out.println(mangasDAO.getEntradaPorTitulo(inp.getTitulo())); // Procurar titulo na DB
 					}
 
 					catch (EntradaNaoEncontradaException ignored) { // Se nao encontrar na DB, pesquisar na API
 						try {
-							jikan = new Jikan(Jikan.BUSCAR_MANGA, tituloProcurado);
+							jikan = new Jikan(Jikan.BUSCAR_MANGA, inp.getTitulo());
 
 							Menu.mostrarTitulosEncontrados(jikan.mostrarTitulosEncontrados());
 
-							inpMenu = pegarInputEntre0e9();
+							inp.setMenu();
 
 							manga = new Manga(
-									jikan.getMatches().getJSONObject(inpMenu).getInt(Jikan.ID),
-									jikan.getMatches().getJSONObject(inpMenu).getString(Jikan.URL),
-									jikan.getMatches().getJSONObject(inpMenu).getString(Jikan.TITULO),
-									jikan.getMatches().getJSONObject(inpMenu).getString(Jikan.SINOPSE),
-									jikan.getMatches().getJSONObject(inpMenu).getInt(Jikan.CAPITULOS),
-									jikan.getMatches().getJSONObject(inpMenu).getInt(Jikan.VOLUMES),
-									jikan.getMatches().getJSONObject(inpMenu).getString(Jikan.TIPO),
-									jikan.getMatches().getJSONObject(inpMenu).getDouble(Jikan.NOTA)
+									jikan.getMatches().getJSONObject(inp.getMenu()).getInt(Jikan.ID),
+									jikan.getMatches().getJSONObject(inp.getMenu()).getString(Jikan.URL),
+									jikan.getMatches().getJSONObject(inp.getMenu()).getString(Jikan.TITULO),
+									jikan.getMatches().getJSONObject(inp.getMenu()).getString(Jikan.SINOPSE),
+									jikan.getMatches().getJSONObject(inp.getMenu()).getInt(Jikan.CAPITULOS),
+									jikan.getMatches().getJSONObject(inp.getMenu()).getInt(Jikan.VOLUMES),
+									jikan.getMatches().getJSONObject(inp.getMenu()).getString(Jikan.TIPO),
+									jikan.getMatches().getJSONObject(inp.getMenu()).getDouble(Jikan.NOTA)
 							);
 
 							mangasDAO.escreverEntrada(manga);
@@ -127,38 +119,38 @@ public class App {
 
 				case Menu.EXIBIR:
 					Menu.escolherDB();
-					inpMenu = pegarInputEntre1e2();
-					System.out.println(inpMenu == Menu.USAR_ANIME ? animesDAO : mangasDAO);
+					inp.setDB();
+					System.out.println(inp.getDB() == Menu.USAR_ANIME ? animesDAO : mangasDAO);
 					break;
 
 				case Menu.PESQUISAR:
 					Menu.escolherDB();
-					escolhaDB = pegarInputEntre1e2(); // Anime ou Manga
+					inp.setDB(); // Anime ou Manga
 
 					Menu.escolherPesquisa();
-					escolhaPesquisa = pegarInputEntre1e2(); // ID ou Titulo
+					inp.setPesquisa(); // ID ou Titulo
 
-					if (escolhaPesquisa == Menu.PESQUISAR_ID) {
+					if (inp.getPesquisa() == Menu.PESQUISAR_ID) {
 						Menu.digiteId();
-						idProcurado = pegarInputPositivo();
+						inp.setID();
 					}
 					else {
 						Menu.digiteTitulo();
-						tituloProcurado = sc.nextLine().toLowerCase();
+						inp.setTitulo();
 					}
 
 					try {
-						if (escolhaDB == Menu.USAR_ANIME) {
-							if (escolhaPesquisa == Menu.PESQUISAR_ID) {
-								System.out.println(animesDAO.getEntradaPorID(idProcurado));
+						if (inp.getDB() == Menu.USAR_ANIME) {
+							if (inp.getPesquisa() == Menu.PESQUISAR_ID) {
+								System.out.println(animesDAO.getEntradaPorID(inp.getID()));
 							} else {
-								System.out.println(animesDAO.getEntradaPorTitulo(tituloProcurado));
+								System.out.println(animesDAO.getEntradaPorTitulo(inp.getTitulo()));
 							}
 						} else {
-							if (escolhaPesquisa == Menu.PESQUISAR_ID) {
-								System.out.println(mangasDAO.getEntradaPorID(idProcurado));
+							if (inp.getPesquisa() == Menu.PESQUISAR_ID) {
+								System.out.println(mangasDAO.getEntradaPorID(inp.getID()));
 							} else {
-								System.out.println(mangasDAO.getEntradaPorTitulo(tituloProcurado));
+								System.out.println(mangasDAO.getEntradaPorTitulo(inp.getTitulo()));
 							}
 						}
 					}
@@ -170,46 +162,46 @@ public class App {
 
 				case Menu.APAGAR:
 					Menu.escolherDB();
-					escolhaDB = pegarInputEntre1e2();
+					inp.setDB();
 
 					Menu.escolherPesquisa();
-					escolhaPesquisa = pegarInputEntre1e2();
+					inp.setPesquisa();
 
-					if (escolhaPesquisa == Menu.PESQUISAR_ID) {
+					if (inp.getPesquisa() == Menu.PESQUISAR_ID) {
 						Menu.digiteId();
-						idProcurado = pegarInputPositivo();
+						inp.setID();
 					}
 					else {
 						Menu.digiteTitulo();
-						tituloProcurado = sc.nextLine().toLowerCase();
+						inp.setTitulo();
 					}
 
 					try {
-						if (escolhaDB == Menu.USAR_ANIME) {
-							if (escolhaPesquisa == Menu.PESQUISAR_ID) {
-								anime = animesDAO.getEntradaPorID(idProcurado);
+						if (inp.getDB() == Menu.USAR_ANIME) {
+							if (inp.getPesquisa() == Menu.PESQUISAR_ID) {
+								anime = animesDAO.getEntradaPorID(inp.getID());
 							}
 							else {
-								anime = animesDAO.getEntradaPorTitulo(tituloProcurado);
+								anime = animesDAO.getEntradaPorTitulo(inp.getTitulo());
 							}
 
 							System.out.println(anime + "\n-----------");
 							Menu.confirmarApagar();
-							inpMenu = pegarInputEntre1e2();
-							if (inpMenu == Menu.SIM) animesDAO.apagarEntrada(anime);
+							inp.setApagar();
+							if (inp.getApagar() == Menu.SIM) animesDAO.apagarEntrada(anime);
 						}
 						else {
-							if (escolhaPesquisa == Menu.PESQUISAR_ID) {
-								manga = mangasDAO.getEntradaPorID(idProcurado);
+							if (inp.getPesquisa() == Menu.PESQUISAR_ID) {
+								manga = mangasDAO.getEntradaPorID(inp.getID());
 							}
 							else {
-								manga = mangasDAO.getEntradaPorTitulo(tituloProcurado);
+								manga = mangasDAO.getEntradaPorTitulo(inp.getTitulo());
 							}
 
 							System.out.println(manga + "\n-----------");
 							Menu.confirmarApagar();
-							inpMenu = pegarInputEntre1e2();
-							if (inpMenu == Menu.SIM) mangasDAO.apagarEntrada(manga);
+							inp.setApagar();
+							if (inp.getApagar() == Menu.SIM) mangasDAO.apagarEntrada(manga);
 						}
 					}
 					catch (EntradaNaoEncontradaException ignored) {
@@ -229,73 +221,5 @@ public class App {
 					break;
 			}
 		}
-	}
-
-	private int pegarInputPositivo(){ // input > 0
-		int retorno = Menu.INVALIDO;
-
-		while ( retorno <= 0 ) {
-			try {
-				retorno = sc.nextInt();
-				if ( retorno <= 0 ) throw new ForaDoRangeException();
-			}
-			catch (InputMismatchException ignored) {
-				Menu.naoENumero();
-			}
-			catch (ForaDoRangeException ignored){
-				Menu.foraDoRange(0, null);
-			}
-			sc.nextLine(); // consumindo o "\n" que o sc.nextInt() nao consumiu
-		}
-
-		return retorno;
-	}
-
-	private int pegarInputEntre0e9(){ // 0 <= input <= 9
-		int retorno = Menu.INVALIDO;
-
-		while ( ! entre0e9(retorno) ) {
-			try {
-				retorno = sc.nextInt();
-				if ( ! entre0e9(retorno)) throw new ForaDoRangeException();
-			}
-			catch (InputMismatchException ignored) {
-				Menu.naoENumero();
-			}
-			catch (ForaDoRangeException ignored){
-				Menu.foraDoRange(0, 9);
-			}
-			sc.nextLine(); // consumindo o "\n" que o sc.nextInt() nao consumiu
-		}
-
-		return retorno;
-	}
-
-	private int pegarInputEntre1e2(){ // input = 1 ou 2
-		int retorno = Menu.INVALIDO;
-
-		while ( ! entre1e2(retorno) ) {
-			try {
-				retorno = sc.nextInt();
-				if ( ! entre1e2(retorno)) throw new ForaDoRangeException();
-			}
-			catch (InputMismatchException ignored) {
-				Menu.naoENumero();
-			}
-			catch (ForaDoRangeException ignored){
-				Menu.foraDoRange(1, 2);
-			}
-			sc.nextLine(); // consumindo o "\n" que o sc.nextInt() nao consumiu
-		}
-
-		return retorno;
-	}
-
-	private boolean entre0e9(int x){ // 0 <= input <= 9
-		return x >= 0 && x <= 9;
-	}
-
-	private boolean entre1e2(int x){ // input = 1 ou 2
-		return x >= 1 && x <= 2;
 	}
 }

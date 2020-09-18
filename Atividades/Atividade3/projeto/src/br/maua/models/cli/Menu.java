@@ -1,4 +1,4 @@
-package br.maua.models;
+package br.maua.models.cli;
 
 public class Menu {
 	public static final int ANIME = 1;
