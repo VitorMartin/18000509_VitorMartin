@@ -101,7 +101,9 @@ public class MangasDAO implements DAO<Manga> {
 	public String toString() {
 		StringBuilder str = new StringBuilder();
 
-		getAll().forEach(mg -> str.append(mg).append("\n----------|----------\n"));
+		str.append("====== MANGAS =======\n");
+		getAll().forEach(str::append);
+		str.append("=====================\n");
 
 		return str.toString();
 	}

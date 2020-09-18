@@ -99,7 +99,9 @@ public class AnimesDAO implements DAO<Anime> {
 	public String toString() {
 		StringBuilder str = new StringBuilder();
 
-		getAll().forEach(an -> str.append(an).append("\n----------|----------\n"));
+		str.append("====== ANIMES =======\n");
+		getAll().forEach(str::append);
+		str.append("=====================\n");
 
 		return str.toString();
 	}

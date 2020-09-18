@@ -11,10 +11,16 @@ public class Anime extends Midia {
 
 	@Override
 	public String toString() {
-		return String.format(
+		StringBuilder str = new StringBuilder();
+
+		str.append("----------|----------\n");
+		str.append( String.format(
 				"       ID : %s\n   Titulo : %s\n     Nota : %s\nEpisodios : %s\n      URL : %s\n  Sinopse : %s",
 				id, titulo, nota, episodios, url, sinopse
-		);
+		));
+		str.append("\n----------|----------\n");
+
+		return str.toString();
 	}
 
 	// Getters e Setters

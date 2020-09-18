@@ -27,11 +27,12 @@ public class Menu {
 		System.out.println(
 				"-----------\n" +
 						"Categorias:\n" +
-						ANIME + " - Anime" + "\n" +
-						MANGA + " - Manga"	+ "\n" +
+						ANIME + " - Procurar anime" + "\n" +
+						MANGA + " - Procurar manga"	+ "\n" +
+						"\n" +
 						EXIBIR + " - Exibir DB"	+ "\n" +
-						PESQUISAR + " - Pesquisar"	+ "\n" +
-						APAGAR + " - Apagar"	+ "\n" +
+						PESQUISAR + " - Pesquisar DB"	+ "\n" +
+						APAGAR + " - Apagar entrada"	+ "\n" +
 						"\n" +
 						SAIR + " - Sair" +
 						"\n-----------"

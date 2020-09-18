@@ -185,7 +185,7 @@ public class App {
 								anime = animesDAO.getEntradaPorTitulo(inp.getTitulo());
 							}
 
-							System.out.println(anime + "\n-----------");
+							System.out.println(anime);
 							Menu.confirmarApagar();
 							inp.setApagar();
 							if (inp.getApagar() == Menu.SIM) animesDAO.apagarEntrada(anime);
@@ -198,7 +198,7 @@ public class App {
 								manga = mangasDAO.getEntradaPorTitulo(inp.getTitulo());
 							}
 
-							System.out.println(manga + "\n-----------");
+							System.out.println(manga);
 							Menu.confirmarApagar();
 							inp.setApagar();
 							if (inp.getApagar() == Menu.SIM) mangasDAO.apagarEntrada(manga);
