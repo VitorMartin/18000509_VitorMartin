@@ -14,6 +14,11 @@ public class Input {
 	private int apagar = Menu.NAO;
 	private String titulo = "";
 
+	/**
+	 * Valida input do usuário maior que 0.
+	 *
+	 * @return Input do usuário validado.
+	 */
 	private int getInputPositivo(){ // input > 0
 		int retorno = Menu.INVALIDO;
 
@@ -34,6 +39,11 @@ public class Input {
 		return retorno;
 	}
 
+	/**
+	 * Valida input do usuário entre 0 e 9 (intervalos fechados).
+	 *
+	 * @return Input do usuário validado.
+	 */
 	private int getInputEntre0e9(){ // 0 <= input <= 9
 		int retorno = Menu.INVALIDO;
 
@@ -54,6 +64,11 @@ public class Input {
 		return retorno;
 	}
 
+	/**
+	 * Valida input do usuário igual a 1 ou 2.
+	 *
+	 * @return Input do usuário validado.
+	 */
 	private int getInputEntre1e2(){ // input = 1 ou 2
 		int retorno = Menu.INVALIDO;
 
@@ -74,10 +89,22 @@ public class Input {
 		return retorno;
 	}
 
+	/**
+	 * Verifica se input não está entre 0 e 9 (intervalos fechados).
+	 *
+	 * @param x Input.
+	 * @return Verdadeiro se input não está entre 0 e 9 (intervalos fechados).
+	 */
 	private boolean notEntre0e9(int x){
 		return x < 0 || x > 9;
 	}
 
+	/**
+	 * Verifica se input é diferente de 1 ou 2.
+	 *
+	 * @param x Input.
+	 * @return Verdadeiro se input for diferente de 1 ou 2.
+	 */
 	private boolean notEntre1e2(int x){
 		return x < 1 || x > 2;
 	}

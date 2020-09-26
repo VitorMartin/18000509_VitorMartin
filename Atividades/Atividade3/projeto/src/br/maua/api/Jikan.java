@@ -10,6 +10,9 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 
+/**
+ * Classe responsável por implementar os métodos para interação com a API Jikan.
+ */
 public class Jikan {
 	public static final String BUSCAR_ANIME = "anime";
 	public static final String BUSCAR_MANGA = "manga";
@@ -26,13 +29,33 @@ public class Jikan {
 	public static final String VOLUMES = "volumes";
 	public static final String TIPO = "type";
 
+	/**
+	 * {@link JSONArray} com todas as mídias encontradas pela requisição feita ao servidor do My Anime List.
+	 */
 	private final JSONArray matches;
 
+	/**
+	 * Construtor da classe {@link Jikan}.
+	 *
+	 * @param categoria Qual mídia a ser pesquisada. Anime ou Mangá?
+	 * @param titulo Título da mídia procurada.
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
 	public Jikan(String categoria, String titulo) throws IOException, InterruptedException {
 		JSONObject resposta = request(categoria, titulo);
 		this.matches = resposta.getJSONArray("results");
 	}
 
+	/**
+	 * Faz a requisição de informação ao servidor do My Anime List.
+	 *
+	 * @param categoria Qual mídia a ser pesquisada. Anime ou Mangá?
+	 * @param titulo Título da mídia procurada.
+	 * @return {@link JSONObject} com todas as informações referentes à requisição feita.
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
 	private JSONObject request(String categoria, String titulo) throws IOException, InterruptedException {
 		final String urlBase = "https://api.jikan.moe/v3/search/%s?q=%s";
 		URI uri = URI.create(
@@ -60,6 +83,9 @@ public class Jikan {
 		return new JSONObject(response.body());
 	}
 
+	/**
+	 * @return {@link String} com todas as mídias armazenadas em {@link Jikan#matches}.
+	 */
 	public String mostrarTitulosEncontrados(){
 		StringBuilder str = new StringBuilder();
 		for (int i = 0; i < matches.length(); i++) {

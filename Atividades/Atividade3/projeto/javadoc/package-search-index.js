@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"br.maua"},{"l":"br.maua.api"},{"l":"br.maua.dao"},{"l":"br.maua.models"},{"l":"br.maua.models.cli"},{"l":"br.maua.models.midia"},{"l":"br.maua.throwables"}]

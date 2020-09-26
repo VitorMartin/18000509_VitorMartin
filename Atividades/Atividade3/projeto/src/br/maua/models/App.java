@@ -12,6 +12,9 @@ import br.maua.throwables.EntradaNaoEncontradaException;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * Classe principal para a aplicação. Interfaceia a apicação para o usuário com inputs e outputs.
+ */
 public class App {
 	public void run(){
 		Input inp = new Input();

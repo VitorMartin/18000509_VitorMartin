@@ -1,5 +1,9 @@
 package br.maua.models.midia;
 
+/**
+ * Classe filha de {@link Midia}, que implementa um objeto de mangá. Contém as características exclusivas de um mangá,
+ * como número de capítulos e volumes.
+ */
 public class Manga extends Midia {
 
 	private final int capitulos;

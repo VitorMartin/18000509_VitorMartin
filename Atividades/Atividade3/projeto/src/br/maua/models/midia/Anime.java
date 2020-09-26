@@ -1,5 +1,9 @@
 package br.maua.models.midia;
 
+/**
+ * Classe filha de {@link Midia}, que implementa um objeto de anime. Contém as características exclusivas de um anime,
+ * como número de episódios.
+ */
 public class Anime extends Midia {
 
 	private final int episodios;

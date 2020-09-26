@@ -1,5 +1,8 @@
 package br.maua.models.midia;
 
+/**
+ * Classe que implementa um objeto de mídia. Contém as características de um mídia genérica, como título, sinopse, etc.
+ */
 public class Midia {
 
 	protected final int id;
