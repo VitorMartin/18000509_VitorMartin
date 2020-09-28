@@ -1,1 +1,0 @@
-java -jar projeto_base_ecm251.jar
