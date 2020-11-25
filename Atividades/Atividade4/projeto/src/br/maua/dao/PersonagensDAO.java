@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PersonagensDAO implements DAO<Personagem> {
-	private final String dbName = "personagens2";
+	private final String dbName = "personagens";
 
 	private Connection con;
 
