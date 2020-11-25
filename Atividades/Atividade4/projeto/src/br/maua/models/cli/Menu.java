@@ -13,7 +13,7 @@ public class Menu {
 	public static final int APAGAR = 4;
 
 	public static final int PESQUISAR_ID = 1;
-	public static final int PESQUISAR_TITULO = 2;
+	public static final int PESQUISAR_NOME = 2;
 
 	public static final int SIM = 1;
 	public static final int NAO = 2;
@@ -55,39 +55,25 @@ public class Menu {
 	}
 
 	/**
-	 * Pergunta pelo título do Anime.
+	 * Pergunta pelo nome do personagem.
 	 */
 	public static void criarNome(){
 		System.out.println("Digite o nome do personagem a ser criado:");
 	}
 
+	/**
+	 * Coleta dados do personagem a ser criado. O nome já foi determinado anteriormente
+	 */
 	public static void criarDadosPersonagem(){
 		System.out.println("Digite os dados solicitados, separados por VÍRGULA E SEM ESPAÇO:");
 		System.out.println("Raça, profissão, mana, ataque, ataque mágico, defesa, defesa mágica, velocidade, destreza, experiência e nível atual");
 	}
 
 	/**
-	 * Pergunta pelo título do Mangá.
-	 */
-	public static void escolhaManga(){
-		System.out.println("Digite o titulo do seu Manga:");
-	}
-
-	/**
-	 * Mostra todas as correspondências encontradas pela pesquisa na API.
-	 *
-	 * @param titulos {@link String} com todos os títulos encontrados, montado pelo método {@link Jikan#mostrarTitulosEncontrados()}.
-	 */
-	public static void mostrarTitulosEncontrados(String titulos){
-		System.out.println("Digite o numero do titulo desejado:");
-		System.out.println(titulos);
-	}
-
-	/**
-	 * Pergunta se deseja pesquisar por ID ou título.
+	 * Pergunta se deseja pesquisar por ID ou nome.
 	 */
 	public static void escolherPesquisa(){
-		System.out.printf("Como desejar realizar sua pesquisa? Por [%d] ID ou [%d] nome?\n", PESQUISAR_ID, PESQUISAR_TITULO);
+		System.out.printf("Como desejar realizar sua pesquisa? Por [%d] ID ou [%d] nome?\n", PESQUISAR_ID, PESQUISAR_NOME);
 	}
 
 	/**
@@ -98,10 +84,10 @@ public class Menu {
 	}
 
 	/**
-	 * Pede pelo título.
+	 * Pede pelo nome.
 	 */
-	public static void digiteTitulo(){
-		System.out.println("Digite o Titulo a ser procurado: (apenas match exato e nao importa upper case)");
+	public static void digiteNome(){
+		System.out.println("Digite o nome a ser procurado: (apenas match exato e nao importa upper case)");
 	}
 
 	/**
@@ -153,13 +139,6 @@ public class Menu {
 	 */
 	public static void opcaoInvalida(){
 		System.out.println("Opcao invalida.");
-	}
-
-	/**
-	 * Alerta se a pesquisa do usuário na API conter caracteres ilegais para a URI.
-	 */
-	public static void caracterIlegal() {
-		System.out.println("Caractere ilegal utilizado na busca. Evite caracteres especiais.");
 	}
 
 	/**

@@ -60,10 +60,10 @@ public interface DAO <T> {
 
 	/**
 	 *
-	 * @param titulo Título a ser procurado.
+	 * @param nome Título a ser procurado.
 	 * @return Entrada que possui o título procurado. Apenas matches exatos, desconsiderando letras
 	 * maiúsculas e minúsculas.
 	 * @throws EntradaNaoEncontradaException
 	 */
-	T getEntradaPorNome(String titulo) throws EntradaNaoEncontradaException;
+	T getEntradaPorNome(String nome) throws EntradaNaoEncontradaException;
 }

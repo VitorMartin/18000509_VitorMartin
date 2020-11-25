@@ -32,12 +32,13 @@ public class App {
 					Menu.criarNome();
 					inp.setNome();
 					try {
-						System.out.println(dbPersonagensDAO.getEntradaPorNome(inp.getNome())); // Procurar titulo na DB
+						System.out.println(dbPersonagensDAO.getEntradaPorNome(inp.getNome())); // Procurar nome na DB
 						Menu.entradaJaExiste();
 					}
 
 					catch (EntradaNaoEncontradaException ignored) { // Se nao encontrar na DB, criarNome entrada
 						try {
+							Menu.criarDadosPersonagem();
 							inp.setPersonagem();
 							personagem = new Personagem(inp.getPersonagem());
 							System.out.println(personagem);
@@ -55,14 +56,14 @@ public class App {
 
 				case Menu.PESQUISAR:
 					Menu.escolherPesquisa();
-					inp.setPesquisa(); // ID ou Titulo
+					inp.setPesquisa(); // ID ou Nome
 
 					if (inp.getPesquisa() == Menu.PESQUISAR_ID) {
 						Menu.digiteId();
 						inp.setID();
 					}
 					else {
-						Menu.digiteTitulo();
+						Menu.digiteNome();
 						inp.setNome();
 					}
 
@@ -88,7 +89,7 @@ public class App {
 						inp.setID();
 					}
 					else {
-						Menu.digiteTitulo();
+						Menu.digiteNome();
 						inp.setNome();
 					}
 
