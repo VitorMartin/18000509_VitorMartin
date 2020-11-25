@@ -51,7 +51,7 @@ public class Menu {
 	 * Despedida ao usuário quando fechar a aplicação.
 	 */
 	public static void despedida(){
-		System.out.println("〜".repeat(29) + "\n" + "Obrigado por utilizar o OtakuDB, volte sempre!\nArigato gozaimashita! (*＾▽＾)／" + "\n" + "〜".repeat(29));
+		System.out.println("〜".repeat(29) + "\n" + "Obrigado por utilizar o RPG DEV, volte sempre!\nArigato gozaimashita! (*＾▽＾)／" + "\n" + "〜".repeat(29));
 	}
 
 	/**
