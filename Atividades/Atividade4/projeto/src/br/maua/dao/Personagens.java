@@ -7,12 +7,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnimesDAO implements DAO<Anime> {
-	private final String dbName = "animes";
+public class Personagens implements DAO<Anime> {
+	private final String dbName = "personagens";
 
 	private Connection con;
 
-	public AnimesDAO() {
+	public Personagens() {
 		String dbConStr = "jdbc:sqlite:" + DBFileName;
 		try {
 			con = DriverManager.getConnection(dbConStr);
@@ -32,15 +32,15 @@ public class AnimesDAO implements DAO<Anime> {
 			ResultSet res = st.executeQuery(comando);
 
 			while (res.next()){
-				Anime anime = new Anime(
-						res.getInt(ID),
-						res.getString(URL),
-						res.getString(TITULO),
-						res.getString(SINOPSE),
-						res.getInt(EPISODIOS),
-						res.getDouble(NOTA)
-				);
-				animes.add(anime);
+//				Anime anime = new Anime(
+//						res.getString(NOME),
+//						res.getString(RACA),
+//						res.getString(PROFISSAO),
+//						res.getInt(EPISODIOS),
+//						res.getDouble(MANA)
+//				);
+//				animes.add(anime);
+				System.out.println(res);
 			}
 
 			res.close();
@@ -56,10 +56,10 @@ public class AnimesDAO implements DAO<Anime> {
 	@Override
 	public void escreverEntrada(Anime anime) throws SQLException {
 		String comando = String.format(
-				"INSERT INTO %s (%s, %s, %s, %s, %s, %s) VALUES (%d, \"%s\", \"%s\", \"%s\", %d, %s);",
+				"INSERT INTO %s (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) VALUES (%d, \"%s\", \"%s\", \"%s\", %d, %s);",
 				dbName,
-				ID, URL, TITULO, SINOPSE, EPISODIOS, NOTA,
-				anime.getId(), anime.getUrl(), anime.getTitulo().replace("\"", "'"), anime.getSinopse().replace("\"", "'"), anime.getEpisodios(), anime.getNota()
+				NOME, RACA, PROFISSAO, MANA, ATK, ATKMAG, DEF, DEFMAG, VELOCIDADE, DESTREZA, XP, NIVEL,
+				"NOME", "RACA", "PROFISSAO", "MANA", "ATK", "ATKMAG", "DEF", "DEFMAG", "VELOCIDADE", "DESTREZA", "XP", "NIVEL"
 		);
 
 		PreparedStatement ps = con.prepareStatement(comando);
@@ -71,7 +71,7 @@ public class AnimesDAO implements DAO<Anime> {
 	public void apagarEntrada(Anime anime) throws SQLException, NullPointerException {
 		String comando = String.format(
 				"DELETE FROM %s WHERE %s = %d;",
-				dbName, ID, anime.getId()
+				dbName, anime.getId()
 		);
 
 		PreparedStatement ps = con.prepareStatement(comando);
@@ -88,9 +88,9 @@ public class AnimesDAO implements DAO<Anime> {
 	}
 
 	@Override
-	public Anime getEntradaPorTitulo(String titulo) throws EntradaNaoEncontradaException {
+	public Anime getEntradaPorNome(String nome) throws EntradaNaoEncontradaException {
 		for (Anime anime : getAll()){
-			if (titulo.equals(anime.getTituloLower())) return anime;
+			if (nome.equals(anime.getTituloLower())) return anime;
 		}
 		throw new EntradaNaoEncontradaException();
 	}

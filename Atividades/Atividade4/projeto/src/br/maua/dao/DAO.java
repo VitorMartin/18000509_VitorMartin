@@ -12,19 +12,22 @@ import java.util.List;
  */
 public interface DAO <T> {
 
-	String DBFileName = "res/otakuDB.db";
+	// Nome do arquivo de databse
+	String DBFileName = "res/personagens.db";
 
-	String ID = "id";
-	String URL = "url";
-	String TITULO = "titulo";
-	String SINOPSE = "sinopse";
-	String NOTA = "nota";
-
-	String EPISODIOS = "episodios";
-
-	String CAPITULOS = "capitulos";
-	String VOLUMES = "volumes";
-	String TIPO = "tipo";
+	// Nome dos campos da database
+	String NOME = "nome";
+	String RACA = "raca";
+	String PROFISSAO = "profissao";
+	String MANA = "mp";
+	String ATK = "atk";
+	String ATKMAG = "atkm";
+	String DEF = "def";
+	String DEFMAG = "defm";
+	String VELOCIDADE = "vel";
+	String DESTREZA = "des";
+	String XP = "xp";
+	String NIVEL = "lvl";
 
 	/**
 	 * @return Todas as entradas da DB
@@ -61,5 +64,5 @@ public interface DAO <T> {
 	 * maiúsculas e minúsculas.
 	 * @throws EntradaNaoEncontradaException
 	 */
-	T getEntradaPorTitulo(String titulo) throws EntradaNaoEncontradaException;
+	T getEntradaPorNome(String titulo) throws EntradaNaoEncontradaException;
 }

@@ -1,12 +1,9 @@
 package br.maua.models;
 
-import br.maua.api.Jikan;
-import br.maua.dao.AnimesDAO;
-import br.maua.dao.MangasDAO;
+import br.maua.dao.Personagens;
 import br.maua.models.cli.Input;
 import br.maua.models.cli.Menu;
 import br.maua.models.midia.Anime;
-import br.maua.models.midia.Manga;
 import br.maua.throwables.EntradaNaoEncontradaException;
 
 import java.io.IOException;
@@ -19,13 +16,8 @@ public class App {
 	public void run(){
 		Input inp = new Input();
 
-		Jikan jikan;
-
 		Anime anime;
-		AnimesDAO animesDAO = new AnimesDAO();
-
-		Manga manga;
-		MangasDAO mangasDAO = new MangasDAO();
+		Personagens personagens = new Personagens();
 
 		Menu.saudacao();
 
@@ -36,94 +28,39 @@ public class App {
 
 			switch (inp.getMenu()){
 
-				case Menu.ANIME:
+				case Menu.CRIAR:
 
-					Menu.escolhaAnime();
-
-					inp.setTitulo();
-
-					try {
-						System.out.println(animesDAO.getEntradaPorTitulo(inp.getTitulo())); // Procurar titulo na DB
-					}
-
-					catch (EntradaNaoEncontradaException ignored) { // Se nao encontrar na DB, pesquisar na API
-						try {
-							jikan = new Jikan(Jikan.BUSCAR_ANIME, inp.getTitulo());
-
-							Menu.mostrarTitulosEncontrados(jikan.mostrarTitulosEncontrados());
-
-							inp.setMenu();
-
-							anime = new Anime(
-									jikan.getMatches().getJSONObject(inp.getMenu()).getInt(Jikan.ID),
-									jikan.getMatches().getJSONObject(inp.getMenu()).getString(Jikan.URL),
-									jikan.getMatches().getJSONObject(inp.getMenu()).getString(Jikan.TITULO),
-									jikan.getMatches().getJSONObject(inp.getMenu()).getString(Jikan.SINOPSE),
-									jikan.getMatches().getJSONObject(inp.getMenu()).getInt(Jikan.EPISODIOS),
-									jikan.getMatches().getJSONObject(inp.getMenu()).getDouble(Jikan.NOTA)
-							);
-
-							System.out.println(anime);
-							animesDAO.escreverEntrada(anime);
-						}
-
-						catch (InterruptedException | IOException e) { // Exception para API
-							e.printStackTrace();
-							Menu.caracterIlegal();
-						}
-
-						catch (SQLException ignored2) { // Exception para animesDAO.escreverEntrada()
-						}
-					}
-					break;
-
-				case Menu.MANGA:
-
-					Menu.escolhaManga();
+					Menu.criar();
 
 					inp.setTitulo();
 
 					try {
-						System.out.println(mangasDAO.getEntradaPorTitulo(inp.getTitulo())); // Procurar titulo na DB
+						System.out.println(personagens.getEntradaPorNome(inp.getTitulo())); // Procurar titulo na DB
 					}
 
 					catch (EntradaNaoEncontradaException ignored) { // Se nao encontrar na DB, pesquisar na API
 						try {
-							jikan = new Jikan(Jikan.BUSCAR_MANGA, inp.getTitulo());
-
-							Menu.mostrarTitulosEncontrados(jikan.mostrarTitulosEncontrados());
-
 							inp.setMenu();
 
-							manga = new Manga(
-									jikan.getMatches().getJSONObject(inp.getMenu()).getInt(Jikan.ID),
-									jikan.getMatches().getJSONObject(inp.getMenu()).getString(Jikan.URL),
-									jikan.getMatches().getJSONObject(inp.getMenu()).getString(Jikan.TITULO),
-									jikan.getMatches().getJSONObject(inp.getMenu()).getString(Jikan.SINOPSE),
-									jikan.getMatches().getJSONObject(inp.getMenu()).getInt(Jikan.CAPITULOS),
-									jikan.getMatches().getJSONObject(inp.getMenu()).getInt(Jikan.VOLUMES),
-									jikan.getMatches().getJSONObject(inp.getMenu()).getString(Jikan.TIPO),
-									jikan.getMatches().getJSONObject(inp.getMenu()).getDouble(Jikan.NOTA)
-							);
+//							anime = new Anime(							);
 
-							System.out.println(manga);
-							mangasDAO.escreverEntrada(manga);
+//							System.out.println(anime);
+//							personagens.escreverEntrada(anime);
 						}
 
-						catch (InterruptedException | IOException e) { // Exception para API
+						catch (Exception e/*InterruptedException | IOException e*/) { // Exception para API
 							e.printStackTrace();
 							Menu.caracterIlegal();
 						}
 
-						catch (SQLException ignored2) { // Exception para animesDAO.escreverEntrada()
-						}
+//						catch (SQLException ignored2) { // Exception para personagens.escreverEntrada()
+//						}
 					}
 					break;
 
 				case Menu.EXIBIR:
 					Menu.escolherDB();
 					inp.setDB();
-					System.out.println(inp.getDB() == Menu.USAR_ANIME ? animesDAO : mangasDAO);
 					break;
 
 				case Menu.PESQUISAR:
@@ -145,15 +82,9 @@ public class App {
 					try {
 						if (inp.getDB() == Menu.USAR_ANIME) {
 							if (inp.getPesquisa() == Menu.PESQUISAR_ID) {
-								System.out.println(animesDAO.getEntradaPorID(inp.getID()));
+								System.out.println(personagens.getEntradaPorID(inp.getID()));
 							} else {
-								System.out.println(animesDAO.getEntradaPorTitulo(inp.getTitulo()));
-							}
-						} else {
-							if (inp.getPesquisa() == Menu.PESQUISAR_ID) {
-								System.out.println(mangasDAO.getEntradaPorID(inp.getID()));
-							} else {
-								System.out.println(mangasDAO.getEntradaPorTitulo(inp.getTitulo()));
+								System.out.println(personagens.getEntradaPorNome(inp.getTitulo()));
 							}
 						}
 					}
@@ -182,29 +113,16 @@ public class App {
 					try {
 						if (inp.getDB() == Menu.USAR_ANIME) {
 							if (inp.getPesquisa() == Menu.PESQUISAR_ID) {
-								anime = animesDAO.getEntradaPorID(inp.getID());
+								anime = personagens.getEntradaPorID(inp.getID());
 							}
 							else {
-								anime = animesDAO.getEntradaPorTitulo(inp.getTitulo());
+								anime = personagens.getEntradaPorNome(inp.getTitulo());
 							}
 
 							System.out.println(anime);
 							Menu.confirmarApagar();
 							inp.setApagar();
-							if (inp.getApagar() == Menu.SIM) animesDAO.apagarEntrada(anime);
-						}
-						else {
-							if (inp.getPesquisa() == Menu.PESQUISAR_ID) {
-								manga = mangasDAO.getEntradaPorID(inp.getID());
-							}
-							else {
-								manga = mangasDAO.getEntradaPorTitulo(inp.getTitulo());
-							}
-
-							System.out.println(manga);
-							Menu.confirmarApagar();
-							inp.setApagar();
-							if (inp.getApagar() == Menu.SIM) mangasDAO.apagarEntrada(manga);
+							if (inp.getApagar() == Menu.SIM) personagens.apagarEntrada(anime);
 						}
 					}
 					catch (EntradaNaoEncontradaException ignored) {

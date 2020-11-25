@@ -1,6 +1,5 @@
 package br.maua.models.cli;
 
-import br.maua.api.Jikan;
 import br.maua.models.App;
 
 /**
@@ -8,9 +7,7 @@ import br.maua.models.App;
  * ser implementado por aqui.
  */
 public class Menu {
-	public static final int ANIME = 1;
-
-	public static final int MANGA = 2;
+	public static final int CRIAR = 1;
 
 	public static final int EXIBIR = 3;
 
@@ -37,9 +34,7 @@ public class Menu {
 		System.out.println(
 				"-----------\n" +
 						"Categorias:\n" +
-						ANIME + " - Procurar anime" + "\n" +
-						MANGA + " - Procurar manga"	+ "\n" +
-						"\n" +
+						CRIAR + " - Criar personagem" + "\n" +
 						EXIBIR + " - Exibir DB"	+ "\n" +
 						PESQUISAR + " - Pesquisar DB"	+ "\n" +
 						APAGAR + " - Apagar entrada"	+ "\n" +
@@ -53,7 +48,7 @@ public class Menu {
 	 * Saudação inicial ao usuário.
 	 */
 	public static void saudacao(){
-		System.out.println("〜".repeat(37) + "\n" + "Seja bem-vindo ao OtakuDB! Escolha uma das opcoes a seguir:\n" + "〜".repeat(37));
+		System.out.println("〜".repeat(37) + "\n" + "Seja bem-vindo ao RPG DEV! Escolha uma das opcoes a seguir:\n" + "〜".repeat(37));
 	}
 
 	/**
@@ -66,8 +61,9 @@ public class Menu {
 	/**
 	 * Pergunta pelo título do Anime.
 	 */
-	public static void escolhaAnime(){
-		System.out.println("Digite o titulo do seu Anime:");
+	public static void criar(){
+		System.out.println("Digite os dados do personagem a ser criado, separados por VÍRGULA E SEM ESPAÇO:");
+		System.out.println("Nome, raça, profissão, mana, ataque, ataque mágico, defesa, defesa mágica, velocidade, destreza, experiência e nível atual");
 	}
 
 	/**
