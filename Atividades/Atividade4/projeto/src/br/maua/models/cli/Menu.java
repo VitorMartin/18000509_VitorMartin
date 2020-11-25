@@ -24,7 +24,7 @@ public class Menu {
 
 	// ========== Opcoes ========== \\
 	/**
-	 * Menu inciail.
+	 * Menu inicial.
 	 */
 	public static void inicio (){
 		System.out.println(
@@ -48,7 +48,7 @@ public class Menu {
 	}
 
 	/**
-	 * Despedida ao usuário quando fechar a aplicação.
+	 * Despedida ao usuário, quando fechar a aplicação.
 	 */
 	public static void despedida(){
 		System.out.println("〜".repeat(29) + "\n" + "Obrigado por utilizar o RPG DEV, volte sempre!\nArigato gozaimashita! (*＾▽＾)／" + "\n" + "〜".repeat(29));
@@ -62,7 +62,7 @@ public class Menu {
 	}
 
 	/**
-	 * Coleta dados do personagem a ser criado. O nome já foi determinado anteriormente
+	 * Coleta dados do personagem a ser criado. O nome já foi determinado anteriormente.
 	 */
 	public static void criarDadosPersonagem(){
 		System.out.println("Digite os dados solicitados, separados por VÍRGULA E SEM ESPAÇO:");
@@ -91,7 +91,7 @@ public class Menu {
 	}
 
 	/**
-	 * Mensagem para quando o personagem já existir na databse
+	 * Mensagem para quando o personagem já existir na databse.
 	 */
 	public static void entradaJaExiste() {
 		System.out.println("Esse personagem já existe!\n");
@@ -135,7 +135,7 @@ public class Menu {
 	/**
 	 * Caso default do switch case da classe {@link App#run()}.
 	 *
-	 * Acionado quando o número escolhido for válido, porém nenhuma opção de ação está associada.
+	 * Acionado quando o número escolhido não tiver ação atrelada no menu inicial.
 	 */
 	public static void opcaoInvalida(){
 		System.out.println("Opcao invalida.");

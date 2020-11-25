@@ -15,7 +15,7 @@ public interface DAO <T> {
 	// Nome do arquivo de databse
 	String DBFileName = "res/personagensDB.db";
 
-	// Nome dos campos da database
+	// Nome dos campos da database a serem utilizados
 	String ID = "id";
 	String NOME = "nome";
 	String RACA = "raca";
@@ -60,8 +60,8 @@ public interface DAO <T> {
 
 	/**
 	 *
-	 * @param nome Título a ser procurado.
-	 * @return Entrada que possui o título procurado. Apenas matches exatos, desconsiderando letras
+	 * @param nome Nome do personagem a ser procurado.
+	 * @return Entrada que possui o nome procurado. Apenas matches exatos, desconsiderando letras
 	 * maiúsculas e minúsculas.
 	 * @throws EntradaNaoEncontradaException
 	 */

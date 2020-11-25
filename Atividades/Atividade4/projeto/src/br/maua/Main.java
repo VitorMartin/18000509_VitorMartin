@@ -6,7 +6,7 @@ package br.maua;
 import br.maua.models.App;
 
 /**
- * Atividade T3 de Linguagens de Programação 1
+ * Atividade T4 de Linguagens de Programação 1
  *
  * @author Vitor Martin Simoni - 18.00050-9
  * @author Daniel Ughini Xavier - 18.00022-3

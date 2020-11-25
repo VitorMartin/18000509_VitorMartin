@@ -84,6 +84,10 @@ public class Personagem {
 		this.nivel = nivel;
 	}
 
+	/**
+	 * Construtor do objeto Personagem, sem ID definido.
+	 * @param dadosPersonagem Dados do personagem em formato de ArrayList
+	 */
 	public Personagem(ArrayList<String> dadosPersonagem) {
 		this.id = -1;
 		this.nome = dadosPersonagem.get(0);
