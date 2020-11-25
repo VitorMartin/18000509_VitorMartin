@@ -54,9 +54,6 @@ public class App {
 					break;
 
 				case Menu.PESQUISAR:
-					Menu.escolherDB();
-					inp.setDB(); // Anime ou Manga
-
 					Menu.escolherPesquisa();
 					inp.setPesquisa(); // ID ou Titulo
 
@@ -70,12 +67,10 @@ public class App {
 					}
 
 					try {
-						if (inp.getDB() == Menu.USAR_ANIME) {
-							if (inp.getPesquisa() == Menu.PESQUISAR_ID) {
-								System.out.println(dbPersonagensDAO.getEntradaPorID(inp.getID()));
-							} else {
-								System.out.println(dbPersonagensDAO.getEntradaPorNome(inp.getNome()));
-							}
+						if (inp.getPesquisa() == Menu.PESQUISAR_ID) {
+							System.out.println(dbPersonagensDAO.getEntradaPorID(inp.getID()));
+						} else {
+							System.out.println(dbPersonagensDAO.getEntradaPorNome(inp.getNome()));
 						}
 					}
 					catch (EntradaNaoEncontradaException ignored) {
@@ -85,9 +80,6 @@ public class App {
 					break;
 
 				case Menu.APAGAR:
-					Menu.escolherDB();
-					inp.setDB();
-
 					Menu.escolherPesquisa();
 					inp.setPesquisa();
 
@@ -101,19 +93,17 @@ public class App {
 					}
 
 					try {
-						if (inp.getDB() == Menu.USAR_ANIME) {
-							if (inp.getPesquisa() == Menu.PESQUISAR_ID) {
-								personagem = dbPersonagensDAO.getEntradaPorID(inp.getID());
-							}
-							else {
-								personagem = dbPersonagensDAO.getEntradaPorNome(inp.getNome());
-							}
-
-							System.out.println(personagem);
-							Menu.confirmarApagar();
-							inp.setApagar();
-							if (inp.getApagar() == Menu.SIM) dbPersonagensDAO.apagarEntrada(personagem);
+						if (inp.getPesquisa() == Menu.PESQUISAR_ID) {
+							personagem = dbPersonagensDAO.getEntradaPorID(inp.getID());
 						}
+						else {
+							personagem = dbPersonagensDAO.getEntradaPorNome(inp.getNome());
+						}
+
+						System.out.println(personagem);
+						Menu.confirmarApagar();
+						inp.setApagar();
+						if (inp.getApagar() == Menu.SIM) dbPersonagensDAO.apagarEntrada(personagem);
 					}
 					catch (EntradaNaoEncontradaException ignored) {
 						Menu.entradaNaoEncontrada();

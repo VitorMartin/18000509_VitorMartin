@@ -8,17 +8,13 @@ import br.maua.models.App;
  */
 public class Menu {
 	public static final int CRIAR = 1;
+	public static final int EXIBIR = 2;
+	public static final int PESQUISAR = 3;
+	public static final int APAGAR = 4;
 
-	public static final int EXIBIR = 3;
-
-	public static final int USAR_ANIME = 1;
-	public static final int USAR_MANGA = 2;
-
-	public static final int PESQUISAR = 4;
 	public static final int PESQUISAR_ID = 1;
 	public static final int PESQUISAR_TITULO = 2;
 
-	public static final int APAGAR = 5;
 	public static final int SIM = 1;
 	public static final int NAO = 2;
 
@@ -88,17 +84,10 @@ public class Menu {
 	}
 
 	/**
-	 * Pergunta se deseja utilizar a DB de Anime ou Mangá.
-	 */
-	public static void escolherDB() {
-		System.out.printf("Qual DB deseja utilizar? [%d] Animes ou [%d] Mangas?\n", USAR_ANIME, USAR_MANGA);
-	}
-
-	/**
 	 * Pergunta se deseja pesquisar por ID ou título.
 	 */
 	public static void escolherPesquisa(){
-		System.out.printf("Como desejar realizar sua pesquisa? Por [%d] id ou [%d] titulo?\n", PESQUISAR_ID, PESQUISAR_TITULO);
+		System.out.printf("Como desejar realizar sua pesquisa? Por [%d] ID ou [%d] nome?\n", PESQUISAR_ID, PESQUISAR_TITULO);
 	}
 
 	/**

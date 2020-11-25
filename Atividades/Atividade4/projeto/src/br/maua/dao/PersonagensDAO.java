@@ -78,7 +78,7 @@ public class PersonagensDAO implements DAO<Personagem> {
 	public void apagarEntrada(Personagem personagem) throws SQLException, NullPointerException {
 		String comando = String.format(
 				"DELETE FROM %s WHERE %s = %d;",
-				dbName, personagem.getId()
+				dbName, ID, personagem.getId()
 		);
 
 		PreparedStatement ps = con.prepareStatement(comando);
