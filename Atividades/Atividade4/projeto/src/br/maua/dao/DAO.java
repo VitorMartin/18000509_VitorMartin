@@ -16,6 +16,7 @@ public interface DAO <T> {
 	String DBFileName = "res/personagens.db";
 
 	// Nome dos campos da database
+	String ID = "id";
 	String NOME = "nome";
 	String RACA = "raca";
 	String PROFISSAO = "profissao";

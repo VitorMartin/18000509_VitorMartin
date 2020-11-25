@@ -1,13 +1,13 @@
 package br.maua.dao;
 
-import br.maua.models.midia.Anime;
+import br.maua.models.midia.Personagem;
 import br.maua.throwables.EntradaNaoEncontradaException;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Personagens implements DAO<Anime> {
+public class Personagens implements DAO<Personagem> {
 	private final String dbName = "personagens";
 
 	private Connection con;
@@ -22,8 +22,8 @@ public class Personagens implements DAO<Anime> {
 	}
 
 	@Override
-	public List<Anime> getAll() {
-		List<Anime> animes = new ArrayList<>();
+	public List<Personagem> getAll() {
+		List<Personagem> personagens = new ArrayList<>();
 
 		String comando = String.format("SELECT * FROM %s", dbName);
 
@@ -32,15 +32,22 @@ public class Personagens implements DAO<Anime> {
 			ResultSet res = st.executeQuery(comando);
 
 			while (res.next()){
-//				Anime anime = new Anime(
-//						res.getString(NOME),
-//						res.getString(RACA),
-//						res.getString(PROFISSAO),
-//						res.getInt(EPISODIOS),
-//						res.getDouble(MANA)
-//				);
-//				animes.add(anime);
-				System.out.println(res);
+				Personagem personagem = new Personagem(
+						res.getInt(ID),
+						res.getString(NOME),
+						res.getString(RACA),
+						res.getString(PROFISSAO),
+						res.getDouble(MANA),
+						res.getDouble(ATK),
+						res.getDouble(ATKMAG),
+						res.getDouble(DEF),
+						res.getDouble(DEFMAG),
+						res.getDouble(VELOCIDADE),
+						res.getDouble(DESTREZA),
+						res.getDouble(XP),
+						res.getInt(NIVEL)
+				);
+				personagens.add(personagem);
 			}
 
 			res.close();
@@ -50,11 +57,11 @@ public class Personagens implements DAO<Anime> {
 			e.printStackTrace();
 		}
 
-		return animes;
+		return personagens;
 	}
 
 	@Override
-	public void escreverEntrada(Anime anime) throws SQLException {
+	public void escreverEntrada(Personagem personagem) throws SQLException {
 		String comando = String.format(
 				"INSERT INTO %s (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) VALUES (%d, \"%s\", \"%s\", \"%s\", %d, %s);",
 				dbName,
@@ -68,10 +75,10 @@ public class Personagens implements DAO<Anime> {
 	}
 
 	@Override
-	public void apagarEntrada(Anime anime) throws SQLException, NullPointerException {
+	public void apagarEntrada(Personagem personagem) throws SQLException, NullPointerException {
 		String comando = String.format(
 				"DELETE FROM %s WHERE %s = %d;",
-				dbName, anime.getId()
+				dbName, personagem.getId()
 		);
 
 		PreparedStatement ps = con.prepareStatement(comando);
@@ -80,17 +87,17 @@ public class Personagens implements DAO<Anime> {
 	}
 
 	@Override
-	public Anime getEntradaPorID(int id) throws EntradaNaoEncontradaException {
-		for (Anime anime : getAll()){
-			if (id == anime.getId()) return anime;
+	public Personagem getEntradaPorID(int id) throws EntradaNaoEncontradaException {
+		for (Personagem personagem : getAll()){
+			if (id == personagem.getId()) return personagem;
 		}
 		throw new EntradaNaoEncontradaException();
 	}
 
 	@Override
-	public Anime getEntradaPorNome(String nome) throws EntradaNaoEncontradaException {
-		for (Anime anime : getAll()){
-			if (nome.equals(anime.getTituloLower())) return anime;
+	public Personagem getEntradaPorNome(String nome) throws EntradaNaoEncontradaException {
+		for (Personagem personagem : getAll()){
+			if (nome.equals(personagem.getNome().toLowerCase())) return personagem;
 		}
 		throw new EntradaNaoEncontradaException();
 	}

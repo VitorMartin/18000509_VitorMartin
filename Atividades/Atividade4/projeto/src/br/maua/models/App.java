@@ -3,10 +3,9 @@ package br.maua.models;
 import br.maua.dao.Personagens;
 import br.maua.models.cli.Input;
 import br.maua.models.cli.Menu;
-import br.maua.models.midia.Anime;
+import br.maua.models.midia.Personagem;
 import br.maua.throwables.EntradaNaoEncontradaException;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
 /**
@@ -16,8 +15,9 @@ public class App {
 	public void run(){
 		Input inp = new Input();
 
-		Anime anime;
-		Personagens personagens = new Personagens();
+		Personagens dbPersonagens = new Personagens();
+
+		Personagem personagem;
 
 		Menu.saudacao();
 
@@ -35,7 +35,7 @@ public class App {
 					inp.setTitulo();
 
 					try {
-						System.out.println(personagens.getEntradaPorNome(inp.getTitulo())); // Procurar titulo na DB
+						System.out.println(dbPersonagens.getEntradaPorNome(inp.getTitulo())); // Procurar titulo na DB
 					}
 
 					catch (EntradaNaoEncontradaException ignored) { // Se nao encontrar na DB, pesquisar na API
@@ -45,7 +45,7 @@ public class App {
 //							anime = new Anime(							);
 
 //							System.out.println(anime);
-//							personagens.escreverEntrada(anime);
+//							dbPersonagens.escreverEntrada(anime);
 						}
 
 						catch (Exception e/*InterruptedException | IOException e*/) { // Exception para API
@@ -53,7 +53,7 @@ public class App {
 							Menu.caracterIlegal();
 						}
 
-//						catch (SQLException ignored2) { // Exception para personagens.escreverEntrada()
+//						catch (SQLException ignored2) { // Exception para dbPersonagens.escreverEntrada()
 //						}
 					}
 					break;
@@ -61,6 +61,7 @@ public class App {
 				case Menu.EXIBIR:
 					Menu.escolherDB();
 					inp.setDB();
+					System.out.println(inp.getDB() == Menu.USAR_ANIME ? dbPersonagens : "out");
 					break;
 
 				case Menu.PESQUISAR:
@@ -82,9 +83,9 @@ public class App {
 					try {
 						if (inp.getDB() == Menu.USAR_ANIME) {
 							if (inp.getPesquisa() == Menu.PESQUISAR_ID) {
-								System.out.println(personagens.getEntradaPorID(inp.getID()));
+								System.out.println(dbPersonagens.getEntradaPorID(inp.getID()));
 							} else {
-								System.out.println(personagens.getEntradaPorNome(inp.getTitulo()));
+								System.out.println(dbPersonagens.getEntradaPorNome(inp.getTitulo()));
 							}
 						}
 					}
@@ -113,16 +114,16 @@ public class App {
 					try {
 						if (inp.getDB() == Menu.USAR_ANIME) {
 							if (inp.getPesquisa() == Menu.PESQUISAR_ID) {
-								anime = personagens.getEntradaPorID(inp.getID());
+								personagem = dbPersonagens.getEntradaPorID(inp.getID());
 							}
 							else {
-								anime = personagens.getEntradaPorNome(inp.getTitulo());
+								personagem = dbPersonagens.getEntradaPorNome(inp.getTitulo());
 							}
 
-							System.out.println(anime);
+							System.out.println(personagem);
 							Menu.confirmarApagar();
 							inp.setApagar();
-							if (inp.getApagar() == Menu.SIM) personagens.apagarEntrada(anime);
+							if (inp.getApagar() == Menu.SIM) dbPersonagens.apagarEntrada(personagem);
 						}
 					}
 					catch (EntradaNaoEncontradaException ignored) {
