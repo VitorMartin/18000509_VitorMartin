@@ -7,12 +7,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Personagens implements DAO<Personagem> {
-	private final String dbName = "personagens";
+public class PersonagensDAO implements DAO<Personagem> {
+	private final String dbName = "personagens2";
 
 	private Connection con;
 
-	public Personagens() {
+	public PersonagensDAO() {
 		String dbConStr = "jdbc:sqlite:" + DBFileName;
 		try {
 			con = DriverManager.getConnection(dbConStr);
@@ -37,14 +37,14 @@ public class Personagens implements DAO<Personagem> {
 						res.getString(NOME),
 						res.getString(RACA),
 						res.getString(PROFISSAO),
-						res.getDouble(MANA),
-						res.getDouble(ATK),
-						res.getDouble(ATKMAG),
-						res.getDouble(DEF),
-						res.getDouble(DEFMAG),
-						res.getDouble(VELOCIDADE),
-						res.getDouble(DESTREZA),
-						res.getDouble(XP),
+						res.getInt(MANA),
+						res.getInt(ATK),
+						res.getInt(ATKMAG),
+						res.getInt(DEF),
+						res.getInt(DEFMAG),
+						res.getInt(VELOCIDADE),
+						res.getInt(DESTREZA),
+						res.getInt(XP),
 						res.getInt(NIVEL)
 				);
 				personagens.add(personagem);
@@ -63,10 +63,10 @@ public class Personagens implements DAO<Personagem> {
 	@Override
 	public void escreverEntrada(Personagem personagem) throws SQLException {
 		String comando = String.format(
-				"INSERT INTO %s (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) VALUES (%d, \"%s\", \"%s\", \"%s\", %d, %s);",
+				"INSERT INTO %s (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) VALUES (\"%s\", \"%s\", \"%s\", %d, %d, %d, %d, %d, %d, %d, %d, %d);",
 				dbName,
 				NOME, RACA, PROFISSAO, MANA, ATK, ATKMAG, DEF, DEFMAG, VELOCIDADE, DESTREZA, XP, NIVEL,
-				"NOME", "RACA", "PROFISSAO", "MANA", "ATK", "ATKMAG", "DEF", "DEFMAG", "VELOCIDADE", "DESTREZA", "XP", "NIVEL"
+				personagem.getNome(), personagem.getRaca(), personagem.getProfissao(), personagem.getMana(), personagem.getAtk(), personagem.getAtkmag(), personagem.getDef(), personagem.getDefmag(), personagem.getVelocidade(), personagem.getDestreza(), personagem.getXP(), personagem.getNivel()
 		);
 
 		PreparedStatement ps = con.prepareStatement(comando);
@@ -97,7 +97,7 @@ public class Personagens implements DAO<Personagem> {
 	@Override
 	public Personagem getEntradaPorNome(String nome) throws EntradaNaoEncontradaException {
 		for (Personagem personagem : getAll()){
-			if (nome.equals(personagem.getNome().toLowerCase())) return personagem;
+			if (nome.toLowerCase().equals(personagem.getNome().toLowerCase())) return personagem;
 		}
 		throw new EntradaNaoEncontradaException();
 	}
@@ -106,9 +106,9 @@ public class Personagens implements DAO<Personagem> {
 	public String toString() {
 		StringBuilder str = new StringBuilder();
 
-		str.append("====== ANIMES =======\n");
+		str.append("====== PERSONAGENS =======\n");
 		getAll().forEach(str::append);
-		str.append("=====================\n");
+		str.append("==========================\n");
 
 		return str.toString();
 	}

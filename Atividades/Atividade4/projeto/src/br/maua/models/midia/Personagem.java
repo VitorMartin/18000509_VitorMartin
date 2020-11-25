@@ -1,5 +1,7 @@
 package br.maua.models.midia;
 
+import java.util.ArrayList;
+
 /**
  * Classe que implementa um objeto de mídia. Contém as características de um mídia genérica, como título, sinopse, etc.
  */
@@ -9,14 +11,14 @@ public class Personagem {
 	protected final String nome;
 	protected final String raca;
 	protected final String profissao;
-	protected final double mana;
-	protected final double atk;
-	protected final double atkmag;
-	protected final double def;
-	protected final double defmag;
-	protected final double velocidade;
-	protected final double destreza;
-	protected final double xp;
+	protected final int mana;
+	protected final int atk;
+	protected final int atkmag;
+	protected final int def;
+	protected final int defmag;
+	protected final int velocidade;
+	protected final int destreza;
+	protected final int xp;
 	protected final int nivel;
 
 	/**
@@ -35,7 +37,7 @@ public class Personagem {
 	 * @param xp
 	 * @param nivel
 	 */
-	public Personagem(int id, String nome, String raca, String profissao, double mana, double atk, double atkmag, double def, double defmag, double velocidade, double destreza, double xp, int nivel) {
+	public Personagem(int id, String nome, String raca, String profissao, int mana, int atk, int atkmag, int def, int defmag, int velocidade, int destreza, int xp, int nivel) {
 		this.id = id;
 		this.nome = nome;
 		this.raca = raca;
@@ -66,7 +68,7 @@ public class Personagem {
 	 * @param xp
 	 * @param nivel
 	 */
-	public Personagem(String nome, String raca, String profissao, double mana, double atk, double atkmag, double def, double defmag, double velocidade, double destreza, double xp, int nivel) {
+	public Personagem(String nome, String raca, String profissao, int mana, int atk, int atkmag, int def, int defmag, int velocidade, int destreza, int xp, int nivel) {
 		this.id = -1;
 		this.nome = nome;
 		this.raca = raca;
@@ -80,6 +82,22 @@ public class Personagem {
 		this.destreza = destreza;
 		this.xp = xp;
 		this.nivel = nivel;
+	}
+
+	public Personagem(ArrayList<String> dadosPersonagem) {
+		this.id = -1;
+		this.nome = dadosPersonagem.get(0);
+		this.raca = dadosPersonagem.get(1);
+		this.profissao = dadosPersonagem.get(2);
+		this.mana = Integer.parseInt(dadosPersonagem.get(3));
+		this.atk = Integer.parseInt(dadosPersonagem.get(4));
+		this.atkmag = Integer.parseInt(dadosPersonagem.get(5));
+		this.def = Integer.parseInt(dadosPersonagem.get(6));
+		this.defmag = Integer.parseInt(dadosPersonagem.get(7));
+		this.velocidade = Integer.parseInt(dadosPersonagem.get(8));
+		this.destreza = Integer.parseInt(dadosPersonagem.get(9));
+		this.xp = Integer.parseInt(dadosPersonagem.get(10));
+		this.nivel = Integer.parseInt(dadosPersonagem.get(11));
 	}
 
 	@Override
@@ -109,28 +127,28 @@ public class Personagem {
 	public String getProfissao() {
 		return profissao;
 	}
-	public double getMana() {
+	public int getMana() {
 		return mana;
 	}
-	public double getAtk() {
+	public int getAtk() {
 		return atk;
 	}
-	public double getAtkmag() {
+	public int getAtkmag() {
 		return atkmag;
 	}
-	public double getDef() {
+	public int getDef() {
 		return def;
 	}
-	public double getDefmag() {
+	public int getDefmag() {
 		return defmag;
 	}
-	public double getVelocidade() {
+	public int getVelocidade() {
 		return velocidade;
 	}
-	public double getDestreza() {
+	public int getDestreza() {
 		return destreza;
 	}
-	public double getXp() {
+	public int getXP() {
 		return xp;
 	}
 	public int getNivel() {

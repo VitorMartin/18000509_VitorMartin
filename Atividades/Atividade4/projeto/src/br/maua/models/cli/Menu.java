@@ -61,9 +61,13 @@ public class Menu {
 	/**
 	 * Pergunta pelo título do Anime.
 	 */
-	public static void criar(){
-		System.out.println("Digite os dados do personagem a ser criado, separados por VÍRGULA E SEM ESPAÇO:");
-		System.out.println("Nome, raça, profissão, mana, ataque, ataque mágico, defesa, defesa mágica, velocidade, destreza, experiência e nível atual");
+	public static void criarNome(){
+		System.out.println("Digite o nome do personagem a ser criado:");
+	}
+
+	public static void criarDadosPersonagem(){
+		System.out.println("Digite os dados solicitados, separados por VÍRGULA E SEM ESPAÇO:");
+		System.out.println("Raça, profissão, mana, ataque, ataque mágico, defesa, defesa mágica, velocidade, destreza, experiência e nível atual");
 	}
 
 	/**
@@ -109,6 +113,13 @@ public class Menu {
 	 */
 	public static void digiteTitulo(){
 		System.out.println("Digite o Titulo a ser procurado: (apenas match exato e nao importa upper case)");
+	}
+
+	/**
+	 * Mensagem para quando o personagem já existir na databse
+	 */
+	public static void entradaJaExiste() {
+		System.out.println("Esse personagem já existe!\n");
 	}
 
 	/**

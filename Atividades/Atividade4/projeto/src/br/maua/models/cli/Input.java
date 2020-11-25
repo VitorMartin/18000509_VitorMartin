@@ -2,6 +2,8 @@ package br.maua.models.cli;
 
 import br.maua.throwables.ForaDoRangeException;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -12,7 +14,8 @@ public class Input {
 	private int pesquisa = Menu.INVALIDO;
 	private int id = Menu.INVALIDO;
 	private int apagar = Menu.NAO;
-	private String titulo = "";
+	private String nome = "";
+	private ArrayList<String> entradaPersonagem;
 
 	/**
 	 * Valida input do usuário maior que 0.
@@ -125,8 +128,11 @@ public class Input {
 	public int getApagar() {
 		return apagar;
 	}
-	public String getTitulo() {
-		return titulo;
+	public String getNome() {
+		return nome;
+	}
+	public ArrayList<String> getPersonagem() {
+		return entradaPersonagem;
 	}
 
 	public void setMenu() {
@@ -144,7 +150,11 @@ public class Input {
 	public void setApagar() {
 		this.apagar = getInputEntre1e2();
 	}
-	public void setTitulo() {
-		this.titulo = sc.nextLine().toLowerCase();
+	public void setNome() {
+		this.nome = sc.nextLine();
+	}
+	public void setPersonagem() {
+		this.entradaPersonagem = new ArrayList<>(Arrays.asList(sc.nextLine().split(",")));
+		this.entradaPersonagem.add(0, nome);
 	}
 }

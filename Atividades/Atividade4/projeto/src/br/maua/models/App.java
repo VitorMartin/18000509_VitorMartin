@@ -1,6 +1,6 @@
 package br.maua.models;
 
-import br.maua.dao.Personagens;
+import br.maua.dao.PersonagensDAO;
 import br.maua.models.cli.Input;
 import br.maua.models.cli.Menu;
 import br.maua.models.midia.Personagem;
@@ -15,7 +15,7 @@ public class App {
 	public void run(){
 		Input inp = new Input();
 
-		Personagens dbPersonagens = new Personagens();
+		PersonagensDAO dbPersonagensDAO = new PersonagensDAO();
 
 		Personagem personagem;
 
@@ -29,39 +29,28 @@ public class App {
 			switch (inp.getMenu()){
 
 				case Menu.CRIAR:
-
-					Menu.criar();
-
-					inp.setTitulo();
-
+					Menu.criarNome();
+					inp.setNome();
 					try {
-						System.out.println(dbPersonagens.getEntradaPorNome(inp.getTitulo())); // Procurar titulo na DB
+						System.out.println(dbPersonagensDAO.getEntradaPorNome(inp.getNome())); // Procurar titulo na DB
+						Menu.entradaJaExiste();
 					}
 
-					catch (EntradaNaoEncontradaException ignored) { // Se nao encontrar na DB, pesquisar na API
+					catch (EntradaNaoEncontradaException ignored) { // Se nao encontrar na DB, criarNome entrada
 						try {
-							inp.setMenu();
-
-//							anime = new Anime(							);
-
-//							System.out.println(anime);
-//							dbPersonagens.escreverEntrada(anime);
+							inp.setPersonagem();
+							personagem = new Personagem(inp.getPersonagem());
+							System.out.println(personagem);
+							dbPersonagensDAO.escreverEntrada(personagem);
 						}
 
-						catch (Exception e/*InterruptedException | IOException e*/) { // Exception para API
-							e.printStackTrace();
-							Menu.caracterIlegal();
+						catch (SQLException ignored2) { // Exception para dbPersonagensDAO.escreverEntrada()
 						}
-
-//						catch (SQLException ignored2) { // Exception para dbPersonagens.escreverEntrada()
-//						}
 					}
 					break;
 
 				case Menu.EXIBIR:
-					Menu.escolherDB();
-					inp.setDB();
-					System.out.println(inp.getDB() == Menu.USAR_ANIME ? dbPersonagens : "out");
+					System.out.println(dbPersonagensDAO);
 					break;
 
 				case Menu.PESQUISAR:
@@ -77,15 +66,15 @@ public class App {
 					}
 					else {
 						Menu.digiteTitulo();
-						inp.setTitulo();
+						inp.setNome();
 					}
 
 					try {
 						if (inp.getDB() == Menu.USAR_ANIME) {
 							if (inp.getPesquisa() == Menu.PESQUISAR_ID) {
-								System.out.println(dbPersonagens.getEntradaPorID(inp.getID()));
+								System.out.println(dbPersonagensDAO.getEntradaPorID(inp.getID()));
 							} else {
-								System.out.println(dbPersonagens.getEntradaPorNome(inp.getTitulo()));
+								System.out.println(dbPersonagensDAO.getEntradaPorNome(inp.getNome()));
 							}
 						}
 					}
@@ -108,22 +97,22 @@ public class App {
 					}
 					else {
 						Menu.digiteTitulo();
-						inp.setTitulo();
+						inp.setNome();
 					}
 
 					try {
 						if (inp.getDB() == Menu.USAR_ANIME) {
 							if (inp.getPesquisa() == Menu.PESQUISAR_ID) {
-								personagem = dbPersonagens.getEntradaPorID(inp.getID());
+								personagem = dbPersonagensDAO.getEntradaPorID(inp.getID());
 							}
 							else {
-								personagem = dbPersonagens.getEntradaPorNome(inp.getTitulo());
+								personagem = dbPersonagensDAO.getEntradaPorNome(inp.getNome());
 							}
 
 							System.out.println(personagem);
 							Menu.confirmarApagar();
 							inp.setApagar();
-							if (inp.getApagar() == Menu.SIM) dbPersonagens.apagarEntrada(personagem);
+							if (inp.getApagar() == Menu.SIM) dbPersonagensDAO.apagarEntrada(personagem);
 						}
 					}
 					catch (EntradaNaoEncontradaException ignored) {

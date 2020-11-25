@@ -13,7 +13,7 @@ import java.util.List;
 public interface DAO <T> {
 
 	// Nome do arquivo de databse
-	String DBFileName = "res/personagens.db";
+	String DBFileName = "res/personagensDB.db";
 
 	// Nome dos campos da database
 	String ID = "id";
